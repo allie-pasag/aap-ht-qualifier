@@ -36,30 +36,20 @@ export default function ErrorView({ onReset, errorMessage }: ErrorViewProps) {
           alt="Apologetic Allie Cartoon"
           className="w-full h-full object-contain rounded-full border border-[#E040FB]/20"
         />
-        {/* Futuristic tech error indicators */}
-        <div className="absolute -top-1 -right-1 bg-red-500 text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider animate-bounce">
-          Pipeline Blocked
-        </div>
       </div>
 
       {/* Witty Message */}
       <div className="space-y-3">
         <span className="text-[10px] uppercase tracking-[0.2em] text-[#E040FB] font-semibold bg-[#E040FB]/5 border border-[#E040FB]/10 rounded-full px-4 py-1.5 shadow-sm">
-          Cortex Pipeline Hiccup
+          Quick Hiccup
         </span>
         <h2 className="font-serif text-2xl text-white font-medium leading-tight">
-          My Cortex hit a technical bottleneck!
+          Oops! Something went a little off track.
         </h2>
         <p className="text-xs text-[#888888] font-light leading-relaxed max-w-sm mx-auto">
-          It looks like our database pipeline got temporarily jammed by too many high-ticket ideas. 
-          My systems are apologizing profusely for this brief lapse in connection health!
+          It looks like our system got slightly overwhelmed by too many amazing, high-ticket ideas at once. 
+          I am so sorry about that! Let's get you right back in.
         </p>
-        
-        {errorMessage && (
-          <div className="bg-red-950/20 border border-red-500/20 p-2.5 rounded text-[10px] text-red-400 font-mono max-w-xs mx-auto truncate">
-            Details: {errorMessage}
-          </div>
-        )}
       </div>
 
       {/* CTA Retake button */}
@@ -68,7 +58,7 @@ export default function ErrorView({ onReset, errorMessage }: ErrorViewProps) {
         onClick={onReset}
         className="px-6 py-3.5 bg-gradient-to-r from-red-500/10 to-transparent border border-red-500/30 hover:border-red-500 hover:from-red-500 hover:text-black rounded text-xs font-semibold text-red-400 transition-all duration-300"
       >
-        Apology Accepted — Retake Quiz
+        Apology Accepted — Try Again
       </button>
     </div>
   );
