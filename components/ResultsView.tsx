@@ -58,18 +58,42 @@ export default function ResultsView({
         )}
       </div>
 
+      {/* Inline Animation styles */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes subtleBob {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-5px) rotate(0.2deg); }
+        }
+        .animate-subtle-bob {
+          animation: subtleBob 3s ease-in-out infinite;
+        }
+      `}} />
+
       {/* Main Results Card */}
       <div className="space-y-8">
-        {/* Header Block */}
-        <div className="space-y-4">
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#888888] font-medium leading-none block">
-            Your Readiness Report — {firstName.toUpperCase()}
-          </span>
-          <h1 className="font-serif text-3xl md:text-4xl text-white font-medium leading-snug">
-            {result.headline}
-          </h1>
-          <div className="h-[1px] w-full bg-gradient-to-r from-[#E040FB]/40 via-[#222] to-transparent"></div>
+        {/* Header Block with Witty Signature Cartoon */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
+          {/* Glowing Cartoon Avatar */}
+          <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 animate-subtle-bob">
+            <div className="absolute inset-0 rounded-full bg-[#E040FB]/10 blur-md"></div>
+            <img 
+              src="/allie_cartoon_excited.png" 
+              alt="Allie Cartoon" 
+              className="w-full h-full object-contain rounded-full border border-[#E040FB]/30 relative z-10"
+            />
+          </div>
+
+          {/* Header Texts */}
+          <div className="space-y-3 text-center sm:text-left flex-grow">
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#888888] font-medium leading-none block">
+              Your Readiness Report — {firstName.toUpperCase()}
+            </span>
+            <h1 className="font-serif text-2xl md:text-3xl text-white font-medium leading-snug">
+              {result.headline}
+            </h1>
+          </div>
         </div>
+        <div className="h-[1px] w-full bg-gradient-to-r from-[#E040FB]/40 via-[#222] to-transparent"></div>
 
         {/* Narrative Block */}
         <div className="space-y-6">
