@@ -72,10 +72,10 @@ export default function Home() {
       return;
     }
 
-    // Keep loading screen for exactly 4 seconds to simulate AI computation
+    // Keep loading screen for exactly 8.8 seconds to give users ample time to read the fun status sequences
     setTimeout(() => {
       setScreen('results');
-    }, 4000);
+    }, 8800);
   };
 
   const handleReset = () => {

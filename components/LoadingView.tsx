@@ -97,7 +97,7 @@ export default function LoadingView() {
         }
         return prev;
       });
-    }, 1000); // 4 steps, each lasting exactly 1 second over a 4-second loading period
+    }, 2200); // 4 steps, each lasting exactly 2.2 seconds (8.8s total loading period)
 
     return () => clearInterval(interval);
   }, []);
