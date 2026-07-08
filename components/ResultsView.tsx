@@ -171,12 +171,12 @@ export default function ResultsView({
         </div>
 
         {/* Dynamic Scheduler & CTA Block */}
-        <div className="pt-6 border-t border-[#222222]/50 space-y-6">
-          <div className="space-y-1">
-            <h3 className="font-serif text-lg text-white font-medium">
+        <div className="pt-6 border-t border-[#222222]/50 space-y-6 text-center">
+          <div className="space-y-2 max-w-xl mx-auto">
+            <h3 className="font-serif text-lg text-white font-semibold">
               Ready to talk?
             </h3>
-            <p className="text-xs text-[#888888] font-light">
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
               Your personalized high-ticket diagnostic report has been compiled. Let&rsquo;s audit this report together and map your actual build plan.
             </p>
           </div>

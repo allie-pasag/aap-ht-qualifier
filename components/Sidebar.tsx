@@ -23,37 +23,43 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
   return (
     <aside className="w-full md:w-[240px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
       {/* Top Branding & Headshot */}
-      <div className="flex flex-col items-center md:items-start space-y-6 md:space-y-8">
+      <div className="flex flex-col items-center space-y-6 md:space-y-8 text-center">
         {/* Wordmark */}
-        <div className="text-center md:text-left w-full">
+        <div className="text-center w-full">
           <span className="font-serif text-lg font-semibold tracking-wide text-white">
             askallie<span className="text-[#E040FB]">pasag</span>
           </span>
-          <div className="h-[2px] w-12 bg-gradient-to-r from-[#E040FB] to-transparent mt-1 mx-auto md:mx-0"></div>
+          <div className="h-[2px] w-12 bg-gradient-to-r from-[#E040FB] to-transparent mt-1 mx-auto"></div>
         </div>
 
-        {/* Headshot */}
-        <div className="relative group flex flex-col items-center md:items-start">
-          <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border border-[#222222] group-hover:border-[#E040FB] transition-all duration-300 bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-lg shadow-black/40">
+        {/* Headshot with zero border/circle, fading into page background */}
+        <div className="relative group flex flex-col items-center justify-center w-full">
+          <div className="relative w-28 h-36 sm:w-32 sm:h-40 overflow-hidden bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-2xl transition-all duration-300">
             {imageError ? (
               <span className="font-serif text-2xl font-bold text-[#E040FB]">AP</span>
             ) : (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src="/allie_.jpeg"
-                alt="Allie Pasag"
-                className="w-full h-full object-cover grayscale contrast-110 brightness-95 group-hover:grayscale-0 transition-all duration-500"
-                onError={() => setImageError(true)}
-              />
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/allie_portrait.jpg"
+                  alt="Allie Pasag"
+                  className="w-full h-full object-cover transition-all duration-500"
+                  onError={() => setImageError(true)}
+                />
+                {/* Custom Gradient Overlays to melt image into the background (#111111) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/30 pointer-events-none" />
+                <div className="absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-[#111111] to-transparent pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-3 bg-gradient-to-l from-[#111111] to-transparent pointer-events-none" />
+              </>
             )}
           </div>
           {/* Subtle online status indicator */}
-          <div className="absolute bottom-1 right-1 md:bottom-2 md:right-2 w-3 h-3 bg-[#E040FB] rounded-full border-2 border-[#111111] shadow-md animate-pulse"></div>
+          <div className="absolute bottom-2 right-12 w-2.5 h-2.5 bg-[#E040FB] rounded-full border border-[#111111] shadow-md animate-pulse"></div>
         </div>
 
         {/* Tagline */}
-        <div className="text-center md:text-left">
-          <p className="text-xs text-[#888888] italic leading-relaxed max-w-[200px]">
+        <div className="text-center w-full">
+          <p className="text-xs text-[#888888] italic leading-relaxed max-w-[200px] mx-auto">
             &ldquo;This takes 3 minutes. What you get at the end is worth it.&rdquo;
           </p>
         </div>
@@ -110,7 +116,7 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
       </div>
 
       {/* Bottom Branding info / footer */}
-      <div className="hidden md:block text-[9px] text-[#444444] font-light">
+      <div className="hidden md:block text-[9px] text-[#444444] font-light text-center w-full">
         <p>&copy; {new Date().getFullYear()} askalliepasag.</p>
         <p className="mt-0.5">All rights reserved.</p>
       </div>
