@@ -72,25 +72,24 @@ export default function ResultsView({
       {/* Main Results Card */}
       <div className="space-y-8">
         {/* Header Block with Witty Signature Cartoon */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-          {/* Glowing Cartoon Avatar */}
-          <div className="relative w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 animate-subtle-bob">
-            <div className="absolute inset-0 rounded-full bg-[#E040FB]/10 blur-md"></div>
-            <img 
-              src="/allie_cartoon_excited.png" 
-              alt="Allie Cartoon" 
-              className="w-full h-full object-contain rounded-full border border-[#E040FB]/30 relative z-10"
-            />
-          </div>
-
-          {/* Header Texts */}
-          <div className="space-y-3 text-center sm:text-left flex-grow">
+        <div className="flex flex-col sm:flex-row items-center sm:items-stretch gap-6 justify-between">
+          {/* Header Texts (Left Column) */}
+          <div className="space-y-3 text-center sm:text-left flex-grow flex flex-col justify-center">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#888888] font-medium leading-none block">
               Your Readiness Report — {firstName.toUpperCase()}
             </span>
-            <h1 className="font-serif text-2xl md:text-3xl text-white font-medium leading-snug">
+            <h1 className="font-serif text-2xl md:text-3xl text-white font-semibold leading-snug">
               {result.headline}
             </h1>
+          </div>
+
+          {/* Large Transparent Cartoon (Right Column - No circle/bubble, same height as text block!) */}
+          <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 animate-subtle-bob self-center sm:self-end">
+            <img 
+              src="/allie_cartoon_excited.png" 
+              alt="Allie Cartoon" 
+              className="w-full h-full object-contain relative z-10"
+            />
           </div>
         </div>
         <div className="h-[1px] w-full bg-gradient-to-r from-[#E040FB]/40 via-[#222] to-transparent"></div>
