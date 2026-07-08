@@ -21,6 +21,7 @@ export default function Home() {
   });
   const [result, setResult] = useState<QuizResult | null>(null);
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
+  const [dbSaved, setDbSaved] = useState(false);
 
   const startQuiz = () => {
     setScreen('quiz');
@@ -34,7 +35,7 @@ export default function Home() {
     const calculatedResult = calculateQuizResult(answers);
     setResult(calculatedResult);
 
-    // Asynchronous silent Supabase submission
+    // Active Supabase submission with error handling
     try {
       const payload = {
         first_name: answers.first_name,
@@ -56,10 +57,18 @@ export default function Home() {
         price_anchor: calculatedResult.price_anchor,
       };
 
-      // Suppress any console logging unless there's a strict developer trace
-      await supabase.from('leads').insert([payload]);
-    } catch (dbError) {
-      // Gracefully capture database error silently, ensuring standard client experience is unaffected
+      const { error } = await supabase.from('leads').insert([payload]);
+      
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      setDbSaved(true);
+    } catch (dbError: any) {
+      alert("Database Connection Failed: " + (dbError.message || dbError || "Unknown connection error"));
+      // Revert screen so they can review their answers and try again
+      setScreen('quiz');
+      return;
     }
 
     // Keep loading screen for exactly 4 seconds to simulate AI computation
@@ -76,6 +85,7 @@ export default function Home() {
       what_they_have: [],
     });
     setResult(null);
+    setDbSaved(false);
     setScreen('landing');
     setActivePhaseIndex(0);
   };
@@ -107,6 +117,7 @@ export default function Home() {
             result={result}
             firstName={answers.first_name}
             onReset={handleReset}
+            dbSaved={dbSaved}
           />
         )}
       </div>

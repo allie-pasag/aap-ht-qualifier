@@ -102,7 +102,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
 
         {/* Headline */}
         <h1 className="font-serif text-4xl md:text-6xl text-white font-medium leading-tight max-w-3xl">
-          Find out exactly where you are — and what to build next.
+          Find out exactly where you are and what to build next.
         </h1>
 
         {/* Subheadline */}
