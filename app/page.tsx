@@ -6,10 +6,11 @@ import Sidebar from '@/components/Sidebar';
 import QuizForm from '@/components/QuizForm';
 import LoadingView from '@/components/LoadingView';
 import ResultsView from '@/components/ResultsView';
+import ErrorView from '@/components/ErrorView';
 import { QuizAnswers, QuizResult, calculateQuizResult } from '@/lib/quizLogic';
 import { supabase } from '@/lib/supabase';
 
-type ScreenState = 'landing' | 'quiz' | 'loading' | 'results';
+type ScreenState = 'landing' | 'quiz' | 'loading' | 'results' | 'error';
 
 export default function Home() {
   const [screen, setScreen] = useState<ScreenState>('landing');
@@ -22,6 +23,7 @@ export default function Home() {
   const [result, setResult] = useState<QuizResult | null>(null);
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
   const [dbSaved, setDbSaved] = useState(false);
+  const [dbError, setDbError] = useState<string>('');
 
   const startQuiz = () => {
     setScreen('quiz');
@@ -64,10 +66,9 @@ export default function Home() {
       }
 
       setDbSaved(true);
-    } catch (dbError: any) {
-      alert("Database Connection Failed: " + (dbError.message || dbError || "Unknown connection error"));
-      // Revert screen so they can review their answers and try again
-      setScreen('quiz');
+    } catch (err: any) {
+      setDbError(err.message || String(err) || "Unknown database error");
+      setScreen('error');
       return;
     }
 
@@ -86,6 +87,7 @@ export default function Home() {
     });
     setResult(null);
     setDbSaved(false);
+    setDbError('');
     setScreen('landing');
     setActivePhaseIndex(0);
   };
@@ -118,6 +120,13 @@ export default function Home() {
             firstName={answers.first_name}
             onReset={handleReset}
             dbSaved={dbSaved}
+          />
+        )}
+
+        {screen === 'error' && (
+          <ErrorView
+            errorMessage={dbError}
+            onReset={handleReset}
           />
         )}
       </div>

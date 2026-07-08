@@ -58,14 +58,6 @@ export default function ResultsView({ result, firstName, onReset, dbSaved }: Res
 
   return (
     <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-start min-h-[90vh] font-sans animate-fadeIn selection:bg-[#E040FB] selection:text-black">
-      {dbSaved && (
-        <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded text-xs text-green-400 font-light flex items-center space-x-2 animate-fadeIn">
-          <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-          </svg>
-          <span>Success! Your diagnostic details have been securely synchronized with the Supabase database.</span>
-        </div>
-      )}
       {/* Reset/Retake trigger */}
       <div className="flex justify-between items-center mb-6">
         <span className="text-[10px] uppercase tracking-[0.25em] text-[#E040FB] font-semibold bg-[#E040FB]/5 border border-[#E040FB]/10 rounded-full px-3 py-1">
