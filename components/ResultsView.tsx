@@ -84,9 +84,9 @@ export default function ResultsView({
           </div>
 
           {/* Large Transparent Cartoon (Right Column - No circle/bubble, same height as text block!) */}
-          <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 animate-subtle-bob self-center sm:self-end">
+          <div className="relative w-32 h-32 sm:w-36 sm:h-36 flex-shrink-0 animate-subtle-bob self-center sm:self-end">
             <img 
-              src="/allie_cartoon_excited.png" 
+              src="/allie_cartoon_answer.png" 
               alt="Allie Cartoon" 
               className="w-full h-full object-contain relative z-10"
             />
