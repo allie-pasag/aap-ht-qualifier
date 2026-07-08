@@ -181,8 +181,8 @@ export default function ResultsView({
 
       {/* Embedded Popup Modal */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className="relative bg-[#111] border border-[#222] w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl animate-scaleIn flex flex-col h-[90vh] md:h-[80vh]">
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center z-[9999] p-0 md:p-6 animate-fadeIn">
+          <div className="relative bg-[#111] md:border md:border-[#222] w-full h-full md:h-[85vh] md:max-w-2xl md:rounded-2xl overflow-hidden shadow-2xl animate-scaleIn flex flex-col">
             
             {/* Modal Header */}
             <div className="p-4 bg-[#141414] border-b border-[#222] flex justify-between items-center flex-shrink-0">
@@ -193,7 +193,7 @@ export default function ResultsView({
               <button
                 type="button"
                 onClick={() => setShowBookingModal(false)}
-                className="text-xs text-[#888] hover:text-white transition-all p-1 flex items-center space-x-1"
+                className="text-xs text-[#888] hover:text-white transition-all p-2 flex items-center space-x-1"
               >
                 <span>✕</span>
                 <span>Close</span>
