@@ -66,6 +66,24 @@ export default function Home() {
       }
 
       setDbSaved(true);
+
+      // Dispatch premium HTML email report via Resend in the background!
+      try {
+        await fetch('/api/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstName: answers.first_name,
+            lastName: answers.last_name,
+            email: answers.email,
+            result: calculatedResult,
+          }),
+        });
+      } catch (emailErr) {
+        console.error("Background email dispatch bypassed:", emailErr);
+      }
     } catch (err: any) {
       setDbError(err.message || String(err) || "Unknown database error");
       setScreen('error');
