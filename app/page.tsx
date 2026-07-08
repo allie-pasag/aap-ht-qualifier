@@ -118,6 +118,8 @@ export default function Home() {
           <ResultsView
             result={result}
             firstName={answers.first_name}
+            lastName={answers.last_name}
+            email={answers.email}
             onReset={handleReset}
             dbSaved={dbSaved}
           />

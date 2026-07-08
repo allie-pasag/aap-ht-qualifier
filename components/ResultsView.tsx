@@ -6,55 +6,22 @@ import { QuizResult } from '../lib/quizLogic';
 interface ResultsViewProps {
   result: QuizResult;
   firstName: string;
+  lastName: string;
+  email: string;
   onReset: () => void;
   dbSaved?: boolean;
 }
 
-const mockTimeslots = [
-  "9:00 AM EST",
-  "10:30 AM EST",
-  "1:00 PM EST",
-  "3:30 PM EST",
-  "5:00 PM EST"
-];
-
-// Helper to get next 3 business days
-const getNextBusinessDays = () => {
-  const days: { date: Date; label: string; weekday: string }[] = [];
-  let current = new Date();
-  
-  while (days.length < 3) {
-    current.setDate(current.getDate() + 1);
-    const dayOfWeek = current.getDay();
-    // Skip weekends (0 = Sunday, 6 = Saturday)
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      const weekday = current.toLocaleDateString('en-US', { weekday: 'short' });
-      const label = current.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      days.push({ date: new Date(current), label, weekday });
-    }
-  }
-  return days;
-};
-
-export default function ResultsView({ result, firstName, onReset, dbSaved }: ResultsViewProps) {
-  const [selectedDayIdx, setSelectedDayIndex] = useState<number | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [bookingStatus, setBookingStatus] = useState<'idle' | 'booking' | 'confirmed'>('idle');
+export default function ResultsView({
+  result,
+  firstName,
+  lastName,
+  email,
+  onReset,
+  dbSaved,
+}: ResultsViewProps) {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-
-  const businessDays = getNextBusinessDays();
-
-  const handleBook = () => {
-    if (selectedDayIdx === null || !selectedTime) return;
-    setBookingStatus('booking');
-    setTimeout(() => {
-      setBookingStatus('confirmed');
-    }, 1500);
-  };
-
-  const selectedDateLabel = selectedDayIdx !== null 
-    ? `${businessDays[selectedDayIdx].weekday}, ${businessDays[selectedDayIdx].label}` 
-    : '';
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
   return (
     <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-start min-h-[90vh] font-sans animate-fadeIn selection:bg-[#E040FB] selection:text-black">
@@ -181,120 +148,71 @@ export default function ResultsView({ result, firstName, onReset, dbSaved }: Res
         </div>
 
         {/* Dynamic Scheduler & CTA Block */}
-        <div className="pt-4 border-t border-[#222222]/50 space-y-6">
+        <div className="pt-6 border-t border-[#222222]/50 space-y-6">
           <div className="space-y-1">
             <h3 className="font-serif text-lg text-white font-medium">
               Ready to talk?
             </h3>
             <p className="text-xs text-[#888888] font-light">
-              Your personalized high-ticket diagnostic report has been compiled. Let&rsquo;s audit this report together and maps your actual build plan.
+              Your personalized high-ticket diagnostic report has been compiled. Let&rsquo;s audit this report together and map your actual build plan.
             </p>
           </div>
 
-          {bookingStatus === 'idle' && (
-            <div className="bg-[#111] border border-[#222] p-5 rounded-lg space-y-5">
-              <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold block text-center">
-                Select a strategy call slot with Allie
-              </span>
-              
-              {/* Day selection */}
-              <div className="grid grid-cols-3 gap-3">
-                {businessDays.map((day, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => {
-                      setSelectedDayIndex(idx);
-                      setSelectedTime(null); // Clear selected time on day change
-                    }}
-                    className={`p-3 rounded border text-center transition-all duration-300 ${
-                      selectedDayIdx === idx
-                        ? 'bg-[#E040FB]/10 border-[#E040FB] text-white shadow-sm'
-                        : 'bg-[#161616] border-[#222] text-[#888] hover:border-[#444]'
-                    }`}
-                  >
-                    <div className="text-[10px] uppercase tracking-wider font-light">{day.weekday}</div>
-                    <div className="text-xs font-semibold mt-1 font-serif">{day.label}</div>
-                  </button>
-                ))}
-              </div>
+          <div className="bg-[#111] border border-[#222] p-5 rounded-lg space-y-4">
+            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold block text-center">
+              Book a Strategy Call with Allie
+            </span>
 
-              {/* Time selection (only if day selected) */}
-              {selectedDayIdx !== null && (
-                <div className="space-y-2 animate-fadeIn">
-                  <span className="text-[9px] uppercase tracking-[0.1em] text-[#888] block text-center">
-                    Available timeslots for {selectedDateLabel}
-                  </span>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {mockTimeslots.map(time => (
-                      <button
-                        key={time}
-                        type="button"
-                        onClick={() => setSelectedTime(time)}
-                        className={`p-2.5 rounded border text-center text-xs font-light transition-all duration-300 ${
-                          selectedTime === time
-                            ? 'bg-[#E040FB]/10 border-[#E040FB] text-white'
-                            : 'bg-[#161616] border-[#222] text-[#888] hover:border-[#444]'
-                        }`}
-                      >
-                        {time}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
+            <button
+              type="button"
+              onClick={() => setShowBookingModal(true)}
+              className="w-full py-4 text-sm font-semibold rounded bg-[#E040FB] text-black hover:shadow-[0_0_15px_rgba(224,64,251,0.4)] active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
+            >
+              <span>Schedule My Strategy Call</span>
+              <span>→</span>
+            </button>
 
-              {/* Booking CTA Button */}
-              <button
-                type="button"
-                onClick={handleBook}
-                disabled={selectedDayIdx === null || !selectedTime}
-                className={`w-full py-4 text-sm font-semibold rounded transition-all duration-300 flex items-center justify-center space-x-2 ${
-                  selectedDayIdx !== null && selectedTime
-                    ? 'bg-[#E040FB] text-black hover:shadow-[0_0_15px_rgba(224,64,251,0.4)] active:scale-[0.99]'
-                    : 'bg-[#1c1c1c] text-[#444444] border border-[#222] cursor-not-allowed'
-                }`}
-              >
-                <span>Book my strategy call</span>
-                <span className="text-xs font-light">
-                  {selectedTime ? `for ${selectedDateLabel} @ ${selectedTime}` : '→'}
-                </span>
-              </button>
-
-              <span className="text-[10px] text-[#444] block text-center font-light">
-                No pressure. No pitch. Just a clear, pre-framed technical roadmap.
-              </span>
-            </div>
-          )}
-
-          {bookingStatus === 'booking' && (
-            <div className="bg-[#111] border border-[#222] p-8 rounded-lg flex flex-col items-center justify-center space-y-4 text-center min-h-[220px]">
-              <div className="w-8 h-8 rounded-full border-2 border-dashed border-[#E040FB] animate-spin"></div>
-              <p className="text-sm text-[#888] font-light">Registering booking slot on pipeline...</p>
-            </div>
-          )}
-
-          {bookingStatus === 'confirmed' && (
-            <div className="bg-gradient-to-br from-[#111] to-[#121c13] border border-green-500/20 p-6 md:p-8 rounded-lg flex flex-col items-center justify-center space-y-4 text-center animate-scaleIn">
-              <div className="w-12 h-12 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-500 text-lg">
-                ✓
-              </div>
-              <div className="space-y-1.5">
-                <h4 className="font-serif text-xl text-white font-medium">Strategy Call Confirmed!</h4>
-                <p className="text-xs text-[#888888] font-light max-w-sm leading-relaxed">
-                  Congratulations, {firstName}! Allie has locked your booking slot for <strong>{selectedDateLabel} @ {selectedTime}</strong>. A calendar invite has been sent to your email.
-                </p>
-              </div>
-              <div className="bg-[#161616]/60 border border-[#222]/50 p-4 rounded text-left text-xs font-light space-y-1 w-full max-w-sm">
-                <div className="text-[10px] uppercase tracking-wider text-[#E040FB] font-semibold">PRE-DIAGNOSED PRE-FRAME:</div>
-                <div className="text-white mt-1">Client Type: <span className="font-serif font-medium">{result.client_type}</span></div>
-                <div className="text-white">Assigned Bucket: <span className="font-serif font-medium">Bucket {result.client_bucket}</span></div>
-                <div className="text-white">Starting Price Floor: <span className="font-serif font-medium">{result.price_anchor}</span></div>
-              </div>
-            </div>
-          )}
+            <span className="text-[10px] text-[#444] block text-center font-light">
+              No pressure. No pitch. Just a clear, pre-framed technical roadmap.
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* Embedded Popup Modal */}
+      {showBookingModal && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="relative bg-[#111] border border-[#222] w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl animate-scaleIn flex flex-col h-[90vh] md:h-[80vh]">
+            
+            {/* Modal Header */}
+            <div className="p-4 bg-[#141414] border-b border-[#222] flex justify-between items-center flex-shrink-0">
+              <div className="flex items-center space-x-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#E040FB] animate-pulse"></span>
+                <span className="text-xs uppercase tracking-wider text-[#E040FB] font-semibold">Live Booking Scheduler</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowBookingModal(false)}
+                className="text-xs text-[#888] hover:text-white transition-all p-1 flex items-center space-x-1"
+              >
+                <span>✕</span>
+                <span>Close</span>
+              </button>
+            </div>
+
+            {/* Embedded BLAB Iframe */}
+            <div className="flex-grow w-full relative bg-[#111]">
+              <iframe
+                src={`https://bookme.name/askalliepasag/lite/discovery-call?firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&email=${encodeURIComponent(email)}`}
+                width="100%"
+                height="100%"
+                style={{ border: 'none', background: '#111' }}
+                title="Book Allie Pasag Discovery Call"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
