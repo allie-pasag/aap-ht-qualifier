@@ -161,31 +161,31 @@ export function calculateQuizResult(answers: QuizAnswers): QuizResult {
     if (client_type === '1') {
       headline = "You know what you're good at. You just can't decide which version of it to sell.";
       summary = `Right now, ${name}, you're sitting on a massive wealth of knowledge, multiple offer ideas, and several potential directions. But because everything is a possibility, nothing is getting your full focus. The market cannot clearly identify what you are the go-to authority for.`;
-      diagnosis = `The real obstacle isn't your systems, your tech, or your sales copy — it is selection. Trying to build any funnel, landing page, or audience campaigns right now will only amplify the confusion. We need to lock in one clear, high-ticket front-end offer before we write a single line of code.`;
+      diagnosis = `You don't need a fancier website or better email copy right now — you need to choose. Trying to build systems or launch ads for three different ideas at once is just going to keep you running in circles. Let’s pick the one highest-leverage offer that makes the most sense to lead with, lock that in first, and then build the tech around it.`;
     } else {
       // Client Type 2
       headline = "You know exactly what you want to do. You just haven't built it into something people can buy yet.";
       summary = `You have a clear, powerful skill, ${name}, and you've already proven you can deliver results for people. The expertise is fully real, but it remains unstructured. Right now, it's living as a service or an idea rather than a clean, repeatable, premium asset that people can easily purchase.`;
-      diagnosis = `You do not have an infrastructure problem; you have a packaging problem. Before worrying about complex funnels, you need a high-ticket offer architecture that handles the pricing, the delivery boundaries, and the value positioning for you. Once that offer is packaged, the build becomes straightforward.`;
+      diagnosis = `Before we worry about complex tech or build out a pipeline, we need to restructure how you sell what you do. Right now, you are selling your time or your labor, which caps your earning power. We need to package your raw expertise into a signature, high-ticket container with clear milestones and defined boundaries. Once that offer is locked in, the system setup becomes incredibly simple.`;
     }
   } else if (client_bucket === 'B') {
     headline = "Something is off — and it's worth finding out why before you build anything else.";
     summary = `You have an active offer in the market, ${name}, and you've been working hard to push it. However, the conversion is inconsistent, leaving you guessing from week to week. You have some form of active landing page or systems, but they aren't generating a repeatable flow of buyers.`;
-    diagnosis = `It's easy to blame the funnel, the niche, or the ads, but the problem is almost always upstream positioning. If strangers need a long conversation to see the value, the messaging is too generic. We need to diagnose exactly where the disconnect lies between what you do and what the market is willing to pay for, then fix the specific system layers holding you back.`;
+    diagnosis = `It's tempting to think the tech is broken or that you need a completely new audience, but the gap is almost always in the clarity of the hook. If you have to hop on hours of calls just to explain the value of what you do, the system isn't doing the heavy lifting. We need to tighten your messaging so the value of your offer is obvious to premium buyers before they even book a call with you.`;
   } else {
     // Bucket C
     headline = "You have proof. Your system doesn't match what you've built.";
     
     if (client_type === '5') {
       summary = `You have a fully validated offer, ${name}, consistent clients, and documented success. You know exactly what you sell and to whom, but you're missing the backend engine to support it. Right now, you're relying on manual effort, messages, or duct-tape setups to keep things moving.`;
-      diagnosis = `You have completed the hardest part of business: product-market fit. Now, your growth is capped purely by delivery and operational limits. You don't need offer strategy; you need a professional, automated, high-converting machine built from the ground up so you can scale without breaking.`;
+      diagnosis = `You’ve already done the hardest part of business—you have an offer people actually want and pay for. But right now, you are the bottleneck in your own business, duct-taping schedulers and manually chasing leads. You don't need a new strategy; you need an elegant, automated delivery engine so you can scale your sales without working twenty-hour days.`;
     } else if (client_type === '4') {
       summary = `You've built a successful system and offer, ${name}, but you've hit a ceiling. You're likely undercharging, overdelivering, or outgrowing the client profile you currently attract. You want to shift into a new, higher-level offer, but your current system is designed for where you were, not where you're going.`;
-      diagnosis = `The business model that got you here will not get you there. To attract higher-tier buyers, we must completely realign your positioning, raise your price floor, and build a premium launch layer that reflects your true tier of authority. Let's design the next evolution of your business.`;
+      diagnosis = `The exact systems and pricing model that got you to your current level are the very things keeping you from your next evolution. To consistently land higher-tier clients, we need to elevate your positioning, raise your minimum price standard, and build a premium conversion layer that commands respect. Let's design the high-authority system that matches where you are going.`;
     } else {
       // live_improve
       summary = `Your core system and high-ticket offer are actively working, ${name}, but you know there are holes in the bucket. Whether it's lead flow, email automation, checkout flows, or pipeline tracking, the current machine is functioning but not optimized for maximum yield.`;
-      diagnosis = `You don't need to rebuild the wheel. Your foundation is excellent. What you need is an expert audit and a targeted optimization of your active pages, automated nurture sequences, and pipeline stages to plug the leaks and lift your total customer lifetime value.`;
+      diagnosis = `There's absolutely no reason to tear down what you've built. Your foundation is incredibly solid. What we want to do is treat this like fine-tuning a sports car—running a complete audit of your pages, nurture automations, and checkout flows to plug the silent drop-offs and maximize the value of every lead who enters your ecosystem.`;
     }
   }
 
