@@ -44,27 +44,29 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
 
         {/* Headshot with zero border/circle, fading into page background */}
         <div className="relative group flex flex-col items-center justify-center w-full">
-          <div className="relative w-28 h-36 sm:w-32 sm:h-40 overflow-hidden bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-2xl transition-all duration-300">
-            {imageError ? (
-              <span className="font-serif text-2xl font-bold text-[#E040FB]">AP</span>
-            ) : (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/allie_portrait.jpg"
-                  alt="Allie Pasag"
-                  className="w-full h-full object-cover transition-all duration-500"
-                  onError={() => setImageError(true)}
-                />
-                {/* Custom Gradient Overlays to melt image into the background (#111111) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/30 pointer-events-none" />
-                <div className="absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-[#111111] to-transparent pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-3 bg-gradient-to-l from-[#111111] to-transparent pointer-events-none" />
-              </>
-            )}
+          <div className="relative">
+            <div className="relative w-36 h-44 sm:w-40 sm:h-48 overflow-hidden bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-2xl transition-all duration-300">
+              {imageError ? (
+                <span className="font-serif text-2xl font-bold text-[#E040FB]">AP</span>
+              ) : (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/allie_portrait.jpg"
+                    alt="Allie Pasag"
+                    className="w-full h-full object-cover scale-[1.4] origin-[50%_25%] transition-all duration-500"
+                    onError={() => setImageError(true)}
+                  />
+                  {/* Custom Gradient Overlays to melt image into the background (#111111) */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/30 pointer-events-none" />
+                  <div className="absolute inset-y-0 left-0 w-3 bg-gradient-to-r from-[#111111] to-transparent pointer-events-none" />
+                  <div className="absolute inset-y-0 right-0 w-3 bg-gradient-to-l from-[#111111] to-transparent pointer-events-none" />
+                </>
+              )}
+            </div>
+            {/* Subtle online status indicator at bottom-right corner of photo container */}
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#E040FB] rounded-full border border-[#111111] shadow-md animate-pulse z-20"></div>
           </div>
-          {/* Subtle online status indicator */}
-          <div className="absolute bottom-2 right-12 w-2.5 h-2.5 bg-[#E040FB] rounded-full border border-[#111111] shadow-md animate-pulse"></div>
         </div>
 
         {/* Tagline */}
