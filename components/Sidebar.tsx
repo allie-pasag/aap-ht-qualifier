@@ -25,12 +25,12 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
       {/* Top Branding & Headshot */}
       <div className="flex flex-col items-center space-y-6 md:space-y-8 text-center">
         {/* Wordmark */}
-        <div className="text-center w-full flex justify-center -my-6">
+        <div className="text-center w-full flex justify-center -my-10">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/askalliepasag_logo.png"
             alt="ask Allie Pasag Logo"
-            className="h-32 md:h-36 w-auto object-contain"
+            className="w-full h-auto max-w-[190px] object-contain"
           />
         </div>
 
