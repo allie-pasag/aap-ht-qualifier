@@ -82,12 +82,12 @@ export default function LandingView({ onStart }: LandingViewProps) {
     <div className="min-h-screen bg-[#0D0D0D] text-white flex flex-col font-sans selection:bg-[#E040FB] selection:text-black">
       {/* Navigation Header */}
       <header className="max-w-6xl mx-auto w-full px-6 py-6 flex items-center justify-between border-b border-[#222222]/30">
-        <div className="flex items-center">
+        <div className="flex items-center -my-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/askalliepasag_logo.png"
             alt="ask Allie Pasag Logo"
-            className="h-10 w-auto object-contain"
+            className="h-24 md:h-28 w-auto object-contain"
           />
         </div>
         <button
@@ -276,12 +276,12 @@ export default function LandingView({ onStart }: LandingViewProps) {
       {/* Footer */}
       <footer className="bg-[#090909] border-t border-[#222222]/30 py-8 text-center text-xs text-[#444444] font-light mt-auto">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <div className="flex items-center -my-4 opacity-60 hover:opacity-100 transition-opacity duration-300">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/askalliepasag_logo.png"
               alt="ask Allie Pasag Logo"
-              className="h-8 w-auto object-contain"
+              className="h-16 md:h-20 w-auto object-contain"
             />
           </div>
           <div className="flex space-x-6">

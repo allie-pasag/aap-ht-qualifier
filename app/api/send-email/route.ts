@@ -46,7 +46,7 @@ export async function POST(request: Request) {
           <tr>
             <td style="padding: 40px 30px 20px 30px; text-align: center;">
               <!-- Official Brand Logo -->
-              <img src="https://raw.githubusercontent.com/allie-pasag/aap-ht-qualifier/main/public/askalliepasag_logo.png" alt="ask Allie Pasag Logo" width="180" style="display: block; margin: 0 auto 20px auto; object-fit: contain;">
+              <img src="https://raw.githubusercontent.com/allie-pasag/aap-ht-qualifier/main/public/askalliepasag_logo.png" alt="ask Allie Pasag Logo" width="280" style="display: block; margin: 0 auto 10px auto; object-fit: contain;">
               <span style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: #E040FB; font-weight: 600; margin-top: 15px; margin-bottom: 10px;">
                 Your Superpower Blueprint — ${firstName.toUpperCase()}
               </span>
