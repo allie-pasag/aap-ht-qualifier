@@ -13,8 +13,6 @@ interface ResultsViewProps {
 }
 
 interface ClientProfileData {
-  title: string;
-  subtitle: string;
   percentage: number;
   statusTitle: string;
   statusSubtext: string;
@@ -23,8 +21,6 @@ interface ClientProfileData {
 
 const clientProfiles: Record<string, ClientProfileData> = {
   '1': {
-    title: 'The Multi-Passionate',
-    subtitle: 'Capable of everything, committed to nothing — yet.',
     percentage: 44,
     statusTitle: 'Warming up.',
     statusSubtext: 'The pieces are there; they\'re just not connected yet. This is a positioning and structure job, not a rebuild.',
@@ -35,8 +31,6 @@ const clientProfiles: Record<string, ClientProfileData> = {
     ]
   },
   '2': {
-    title: 'The Unpackaged Genius',
-    subtitle: 'Proven delivery, zero packaging — yet.',
     percentage: 44,
     statusTitle: 'Warming up.',
     statusSubtext: 'The expertise is fully proven; it just remains unstructured. This is a packaging and positioning job, not a rebuild.',
@@ -47,9 +41,7 @@ const clientProfiles: Record<string, ClientProfileData> = {
     ]
   },
   '3': {
-    title: 'The Inconsistent Validator',
-    subtitle: 'Active offer, inconsistent conversion — for now.',
-    percentage: 68,
+    percentage: 64,
     statusTitle: 'In Motion.',
     statusSubtext: 'The offer exists and has generated traction, but leaks in the conversion funnel are holding you back from high-ticket status.',
     whatToBuildNext: [
@@ -59,11 +51,9 @@ const clientProfiles: Record<string, ClientProfileData> = {
     ]
   },
   '5': {
-    title: 'The Manual Operator',
-    subtitle: 'Product-market fit is proven, systems are missing.',
-    percentage: 88,
-    statusTitle: 'Ready to Scale.',
-    statusSubtext: 'Your product-market fit is proven. Your delivery works. You just need a professional, automated engine matching your authority.',
+    percentage: 78,
+    statusTitle: 'Strong foundation.',
+    statusSubtext: 'The machine is running — it\'s leaking, not broken. This is an optimization job, not a rebuild.',
     whatToBuildNext: [
       'Map your active client journey from first contact to signed contract.',
       'Automate the intake scheduler, qualification form, and reminder sequence.',
@@ -71,11 +61,9 @@ const clientProfiles: Record<string, ClientProfileData> = {
     ]
   },
   '4': {
-    title: 'The Ceiling Hitter',
-    subtitle: 'Successful systems, but outgrowing your pricing.',
-    percentage: 88,
-    statusTitle: 'Ready to Scale.',
-    statusSubtext: 'Your product-market fit is proven. Your delivery works. You just need a professional, automated engine matching your authority.',
+    percentage: 78,
+    statusTitle: 'Strong foundation.',
+    statusSubtext: 'The machine is running — it\'s leaking, not broken. This is an optimization job, not a rebuild.',
     whatToBuildNext: [
       'Re-engineer your pricing floor and raise your minimum investment standard.',
       'Design a premium launch layer that reflects your true tier of authority.',
@@ -83,15 +71,13 @@ const clientProfiles: Record<string, ClientProfileData> = {
     ]
   },
   'live_improve': {
-    title: 'The High-Performance Optimizer',
-    subtitle: 'Core system working, but holes in the bucket.',
-    percentage: 88,
-    statusTitle: 'Ready to Scale.',
-    statusSubtext: 'Your product-market fit is proven. Your delivery works. You just need a professional, automated engine matching your authority.',
+    percentage: 78,
+    statusTitle: 'Strong foundation.',
+    statusSubtext: 'The machine is running — it\'s leaking, not broken. This is an optimization job, not a rebuild.',
     whatToBuildNext: [
-      'Audit active automated nurture loops to plug leaking pipeline leads.',
-      'Fine-tune page speeds, intake forms, and checkout pathways.',
-      'Establish crystal-clear key results tracking from clicks to consultation calls.'
+      'Audit active pages and nurture sequences to find where qualified leads are dropping off.',
+      'Tighten pipeline stage logic so no deal stalls without a clear next action.',
+      'Layer in LTV-focused automation — upsells, re-engagement, and post-purchase flows — to lift total customer value.'
     ]
   }
 };
@@ -110,26 +96,21 @@ export default function ResultsView({
   // Retrieve client profile based on the output category (with safety fallback)
   const profile = clientProfiles[result.client_type] || clientProfiles['1'];
 
+  // Bucket C uses optimization language, while Buckets A & B use build language
+  const buildHeading = result.client_bucket === 'C' ? 'WHAT TO OPTIMIZE NEXT' : 'WHAT TO BUILD NEXT';
+
   return (
     <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-start min-h-[90vh] font-sans animate-fadeIn selection:bg-[#E040FB] selection:text-black">
       
-      {/* Top Bar Branding Navigation */}
-      <div className="flex justify-between items-center pb-5 border-b border-[#E040FB] mb-8">
-        <div className="h-5 flex items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
-            src="/askalliepasag_logo.png" 
-            className="h-full object-contain filter brightness-110" 
-            alt="askalliepasag" 
-          />
-        </div>
-        <span className="text-[10px] uppercase tracking-[0.25em] text-white/50 font-bold">
-          YOUR RESULT
+      {/* Top Header Row (Reset/Retake and Status Indicator) */}
+      <div className="flex justify-between items-center mb-8">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-[#E040FB] font-semibold bg-[#E040FB]/5 border border-[#E040FB]/10 rounded-full px-3 py-1">
+          Analysis Complete
         </span>
         
         {showResetConfirm ? (
           <div className="flex items-center space-x-2 bg-[#161616] border border-[#222] px-3 py-1 rounded-full animate-fadeIn">
-            <span className="text-[9px] text-[#888]">Retake?</span>
+            <span className="text-[9px] text-[#888]">Confirm reset?</span>
             <button
               onClick={onReset}
               className="text-[9px] uppercase tracking-[0.1em] text-red-500 font-bold hover:underline"
@@ -141,16 +122,16 @@ export default function ResultsView({
               onClick={() => setShowResetConfirm(false)}
               className="text-[9px] uppercase tracking-[0.1em] text-[#888] font-bold hover:underline"
             >
-              No
+              Cancel
             </button>
           </div>
         ) : (
           <button
             onClick={() => setShowResetConfirm(true)}
-            className="w-8 h-8 rounded-full border border-[#222] hover:border-[#E040FB]/40 flex items-center justify-center text-xs text-[#888] hover:text-white transition-all duration-300"
-            title="Retake Quiz"
+            className="text-[10px] uppercase tracking-[0.15em] text-[#888888] hover:text-white transition-colors duration-300 flex items-center space-x-1 font-semibold"
           >
-            ✕
+            <span>Retake Quiz</span>
+            <span>↺</span>
           </button>
         )}
       </div>
@@ -166,59 +147,56 @@ export default function ResultsView({
         }
       `}} />
 
-      {/* Client Profile Header Block */}
-      <div className="space-y-2">
-        <span className="text-[10px] uppercase tracking-[0.25em] text-[#E040FB] font-bold block">
-          YOUR CLIENT TYPE
+      {/* Headline & Avatar Split Section */}
+      <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 mb-8">
+        <div className="space-y-3 text-center sm:text-left flex-grow">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-white/50 font-bold leading-none block">
+            YOUR SUPERPOWER BLUEPRINT — {firstName.toUpperCase()}
+          </span>
+          <h1 className="font-serif text-3xl md:text-4xl text-white font-medium leading-tight">
+            {result.headline}
+          </h1>
+        </div>
+        
+        {/* Bobbing Cartoon Avatar */}
+        <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 animate-subtle-bob">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img 
+            src="/allie_cartoon_answer.png" 
+            alt="Allie Cartoon" 
+            className="w-full h-full object-contain relative z-10"
+          />
+        </div>
+      </div>
+
+      {/* Situation Summary */}
+      <div className="space-y-2 mb-8">
+        <span className="text-[10px] uppercase tracking-[0.15em] text-white/40 font-bold block">
+          SITUATION SUMMARY
         </span>
-        <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-medium tracking-tight leading-none">
-          {profile.title}
-        </h1>
-        <p className="font-serif italic text-lg md:text-xl text-[#E040FB]/90 leading-relaxed font-normal">
-          {profile.subtitle}
+        <p className="text-sm text-[#888888] font-light leading-relaxed">
+          {result.summary}
         </p>
       </div>
 
-      {/* Main Narrative & Cartoon Split */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-8 items-start">
-        {/* Left: Dynamic Copy & Custom Diagnosis */}
-        <div className="md:col-span-8 space-y-6">
-          <p className="text-sm text-[#888888] font-light leading-relaxed">
-            {result.summary}
+      {/* Allie's Diagnosis Card */}
+      <div className="relative group mb-8">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#E040FB]/5 to-transparent rounded-xl blur-md"></div>
+        <div className="relative bg-[#111111]/40 border border-[#222222]/50 p-6 rounded-xl space-y-3">
+          <div className="flex items-center space-x-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#E040FB]"></div>
+            <span className="text-[9px] uppercase tracking-[0.15em] text-[#E040FB] font-bold">
+              Allie&rsquo;s Diagnosis
+            </span>
+          </div>
+          <p className="text-sm text-white/90 font-light leading-relaxed italic">
+            &ldquo;{result.diagnosis}&rdquo;
           </p>
-
-          {/* Allie's Strategic Diagnosis Block */}
-          <div className="relative group">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#E040FB]/5 to-transparent rounded-xl blur-md"></div>
-            <div className="relative bg-[#111111]/40 border border-[#222222]/50 p-6 rounded-xl space-y-3">
-              <div className="flex items-center space-x-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#E040FB]"></div>
-                <span className="text-[9px] uppercase tracking-[0.15em] text-[#E040FB] font-bold">
-                  Allie&rsquo;s Diagnosis
-                </span>
-              </div>
-              <p className="text-sm text-white/90 font-light leading-relaxed italic">
-                &ldquo;{result.diagnosis}&rdquo;
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Premium Bobbing Headshot/Cartoon */}
-        <div className="md:col-span-4 flex justify-center md:justify-end self-center md:pt-4">
-          <div className="relative w-36 h-36 md:w-40 md:h-40 flex-shrink-0 animate-subtle-bob">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/allie_cartoon_answer.png" 
-              alt="Allie Cartoon" 
-              className="w-full h-full object-contain relative z-10"
-            />
-          </div>
         </div>
       </div>
 
       {/* High-Ticket Readiness Progress Card */}
-      <div className="bg-[#111111]/40 border border-[#222222]/50 rounded-xl p-6 mt-8 space-y-4">
+      <div className="bg-[#111111]/40 border border-[#222222]/50 rounded-xl p-6 mb-8 space-y-4">
         <div className="flex justify-between items-baseline">
           <span className="text-[10px] uppercase tracking-[0.2em] text-[#888888] font-bold">
             HIGH-TICKET READINESS
@@ -228,7 +206,7 @@ export default function ResultsView({
           </span>
         </div>
         
-        {/* Sleek horizontal bar */}
+        {/* Sleek horizontal progress bar */}
         <div className="w-full bg-[#161619] h-1.5 rounded-full overflow-hidden">
           <div 
             className="bg-[#E040FB] h-full rounded-full transition-all duration-1000 ease-out shadow-sm shadow-[#E040FB]/30"
@@ -243,10 +221,43 @@ export default function ResultsView({
         </p>
       </div>
 
-      {/* What To Build Next Section */}
-      <div className="mt-12 space-y-6">
-        <h2 className="text-[10px] uppercase tracking-[0.25em] text-[#888888] font-bold block">
-          WHAT TO BUILD NEXT
+      {/* Structural Parameters Grid (2x2) */}
+      <div className="space-y-3 mb-12">
+        <span className="text-[10px] uppercase tracking-[0.15em] text-white/40 font-bold block">
+          STRUCTURAL PARAMETERS
+        </span>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
+            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Offer Status</span>
+            <span className="text-sm font-semibold text-white font-serif">{result.status_tiles.offer_status}</span>
+          </div>
+          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
+            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Validation</span>
+            <span className={`text-sm font-semibold font-serif ${
+              result.status_tiles.validation === 'Proven' ? 'text-green-500' : 'text-white'
+            }`}>
+              {result.status_tiles.validation}
+            </span>
+          </div>
+          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
+            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Conversion Health</span>
+            <span className={`text-sm font-semibold font-serif ${
+              result.status_tiles.conversion === 'Working' ? 'text-[#E040FB]' : 'text-white'
+            }`}>
+              {result.status_tiles.conversion}
+            </span>
+          </div>
+          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
+            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Target Timeline</span>
+            <span className="text-sm font-semibold text-white font-serif">{result.status_tiles.timeline}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* What To Optimize/Build Next checklist */}
+      <div className="mb-12 space-y-6">
+        <h2 className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-bold block">
+          {buildHeading}
         </h2>
         
         <div className="border-t border-[#222222] divide-y divide-[#222222]">
@@ -264,12 +275,12 @@ export default function ResultsView({
       </div>
 
       {/* Pre-Framed Investment Block */}
-      <div className="mt-12 bg-[#111111]/30 border border-[#222222]/50 p-6 rounded-xl space-y-3">
+      <div className="mb-12 bg-[#111111]/30 border border-[#222222]/50 p-6 rounded-xl space-y-3">
         <span className="text-[9px] uppercase tracking-[0.15em] text-[#E040FB] font-bold block">
           PRE-FRAMED INVESTMENT
         </span>
         <div className="flex flex-col md:flex-row md:items-baseline md:space-x-3">
-          <span className="text-2xl md:text-3xl font-serif text-white font-medium">
+          <span className="text-3xl md:text-4xl font-serif text-white font-medium">
             {result.price_anchor}
           </span>
         </div>
@@ -278,32 +289,34 @@ export default function ResultsView({
         </p>
       </div>
 
-      {/* Want Allie to Build it With You? CTA Card */}
-      <div className="bg-gradient-to-br from-[#1A111E]/40 to-[#0A0A0C]/40 border border-[#E040FB]/15 rounded-2xl p-8 mt-12 space-y-6">
-        <h3 className="font-serif text-2xl text-white font-medium leading-snug">
-          Want Allie to build it with you?
-        </h3>
-        <p className="text-sm text-[#888888] font-light leading-relaxed">
-          Bring this result to a consultation call. It's the exact starting point Allie uses to map your offer &mdash; no pitch, just the plan.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 pt-2">
+      {/* Call to Action Schedule Block */}
+      <div className="pt-6 border-t border-[#222222]/50 space-y-6 text-center">
+        <div className="space-y-2 max-w-xl mx-auto">
+          <h3 className="font-serif text-2xl text-white font-medium">
+            Ready to talk?
+          </h3>
+          <p className="text-xs text-[#888888] font-light leading-relaxed">
+            Your personalized high-ticket diagnostic report has been compiled. Let&rsquo;s audit this report together and map your actual build plan.
+          </p>
+        </div>
+
+        <div className="bg-[#111111]/40 border border-[#222222]/50 p-6 rounded-xl space-y-4 max-w-2xl mx-auto">
+          <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-bold block text-center">
+            BOOK A STRATEGY CALL WITH ALLIE
+          </span>
+
           <button
             type="button"
             onClick={() => setShowBookingModal(true)}
-            className="flex-grow py-4 text-sm font-semibold rounded bg-[#E040FB] text-black hover:shadow-[0_0_20px_rgba(224,64,251,0.5)] active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
+            className="w-full py-4 text-sm font-semibold rounded bg-[#E040FB] text-black hover:shadow-[0_0_20px_rgba(224,64,251,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
           >
-            <span>Book a consultation call</span>
+            <span>Schedule My Strategy Call</span>
             <span>&rarr;</span>
           </button>
-          
-          <button
-            type="button"
-            onClick={() => setShowResetConfirm(true)}
-            className="px-6 py-4 text-sm font-medium rounded border border-[#222222] hover:border-white/20 hover:bg-white/5 active:scale-[0.99] text-[#888888] hover:text-white transition-all duration-300"
-          >
-            Retake the quiz
-          </button>
+
+          <span className="text-[10px] text-[#444] block text-center font-light">
+            No pressure. No pitch. Just a clear, pre-framed technical roadmap.
+          </span>
         </div>
       </div>
 
