@@ -25,7 +25,7 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
   const effectivePhaseIndex = (currentStep === 'results' || currentStep === 'loading') ? 6 : activePhaseIndex;
 
   return (
-    <aside className="w-full md:w-[240px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
+    <aside className="w-full md:w-[280px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
       {/* Top Branding & Headshot */}
       <div className="flex flex-col items-center space-y-6 md:space-y-8 text-center">
         {/* Wordmark */}
