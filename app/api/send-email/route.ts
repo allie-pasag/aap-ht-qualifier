@@ -45,9 +45,9 @@ export async function POST(request: Request) {
           <!-- Header Block -->
           <tr>
             <td style="padding: 40px 30px 20px 30px; text-align: center;">
-              <!-- Cartoon Avatar Logo -->
-              <img src="https://raw.githubusercontent.com/allie-pasag/aap-ht-qualifier/main/public/allie_cartoon_excited.png" alt="Allie Pasag" width="120" style="display: block; margin: 0 auto 20px auto; border-radius: 50%; border: 2px solid #E040FB;">
-              <span style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: #E040FB; font-weight: 600; margin-bottom: 10px;">
+              <!-- Official Brand Logo -->
+              <img src="https://raw.githubusercontent.com/allie-pasag/aap-ht-qualifier/main/public/askalliepasag_logo.png" alt="ask Allie Pasag Logo" width="180" style="display: block; margin: 0 auto 20px auto; object-fit: contain;">
+              <span style="display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: #E040FB; font-weight: 600; margin-top: 15px; margin-bottom: 10px;">
                 Your Superpower Blueprint — ${firstName.toUpperCase()}
               </span>
               <h1 style="color: #ffffff; font-size: 26px; font-weight: 600; margin: 0; line-height: 1.3;">

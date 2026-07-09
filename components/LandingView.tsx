@@ -82,9 +82,14 @@ export default function LandingView({ onStart }: LandingViewProps) {
     <div className="min-h-screen bg-[#0D0D0D] text-white flex flex-col font-sans selection:bg-[#E040FB] selection:text-black">
       {/* Navigation Header */}
       <header className="max-w-6xl mx-auto w-full px-6 py-6 flex items-center justify-between border-b border-[#222222]/30">
-        <span className="font-serif text-xl font-medium tracking-wide">
-          askallie<span className="text-[#E040FB]">pasag</span>
-        </span>
+        <div className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/askalliepasag_logo.png"
+            alt="ask Allie Pasag Logo"
+            className="h-10 w-auto object-contain"
+          />
+        </div>
         <button
           onClick={onStart}
           className="text-xs uppercase tracking-[0.12em] font-medium text-[#888888] hover:text-white hover:border-[#E040FB]/40 border border-[#222] rounded-full px-4 py-2 transition-all duration-300"
@@ -271,9 +276,14 @@ export default function LandingView({ onStart }: LandingViewProps) {
       {/* Footer */}
       <footer className="bg-[#090909] border-t border-[#222222]/30 py-8 text-center text-xs text-[#444444] font-light mt-auto">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-          <span className="font-serif text-sm tracking-wide text-[#888]">
-            askallie<span className="text-[#E040FB]/60">pasag</span>
-          </span>
+          <div className="flex items-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/askalliepasag_logo.png"
+              alt="ask Allie Pasag Logo"
+              className="h-8 w-auto object-contain"
+            />
+          </div>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-white transition-colors duration-300">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors duration-300">Terms of Service</a>

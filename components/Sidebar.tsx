@@ -25,11 +25,13 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
       {/* Top Branding & Headshot */}
       <div className="flex flex-col items-center space-y-6 md:space-y-8 text-center">
         {/* Wordmark */}
-        <div className="text-center w-full">
-          <span className="font-serif text-lg font-semibold tracking-wide text-white">
-            askallie<span className="text-[#E040FB]">pasag</span>
-          </span>
-          <div className="h-[2px] w-12 bg-gradient-to-r from-[#E040FB] to-transparent mt-1 mx-auto"></div>
+        <div className="text-center w-full flex justify-center py-2 px-1">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/askalliepasag_logo.png"
+            alt="ask Allie Pasag Logo"
+            className="h-14 w-auto object-contain"
+          />
         </div>
 
         {/* Headshot with zero border/circle, fading into page background */}
