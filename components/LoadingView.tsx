@@ -128,6 +128,23 @@ export default function LoadingView() {
         }
       `}} />
 
+      {/* Persistent Witty Confirmation Banner on top */}
+      <div className="relative bg-[#161616]/60 border border-green-500/20 px-5 py-4 rounded-xl shadow-[0_0_15px_rgba(34,197,94,0.04)] backdrop-blur-md max-w-sm w-full space-y-1.5 animate-fadeIn flex flex-col items-center">
+        <div className="flex items-center space-x-2">
+          {/* Pulsing Green status indicator */}
+          <div className="relative w-2 h-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </div>
+          <span className="text-[10px] uppercase tracking-[0.2em] text-green-400 font-bold">
+            Submission Received!
+          </span>
+        </div>
+        <p className="text-xs text-[#b8b8b8] font-light leading-relaxed">
+          Your answers have been saved safely. Hold on for just a few seconds while I analyze them and brew your custom strategy...
+        </p>
+      </div>
+
       {/* Dynamic Animated Cartoon Avatar */}
       <div className="relative w-48 h-48 md:w-56 md:h-56 animate-subtle-bob flex-shrink-0">
         {/* Soft floating glow ring behind cartoon */}
