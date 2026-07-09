@@ -266,9 +266,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 1
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Let&rsquo;s start with you.
+              Before we build, let&rsquo;s align.
             </h2>
-            <p className="text-xs text-[#888888] font-light">Who are we talking to?</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              Every world-class technical system starts with the context of the person behind it. Introduce yourself below so we can tailor this high-ticket diagnosis exactly to your name, expertise, and goals.
+            </p>
           </div>
 
           <div className="space-y-4">
@@ -336,9 +338,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 2
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Where are you with your offer right now?
+              What is the current state of your offer?
             </h2>
-            <p className="text-xs text-[#888888] font-light">Be honest. This determines everything.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              An incredible system is useless if it&rsquo;s mapped to the wrong strategy. Let&rsquo;s establish your exact starting point so we know whether we are choosing a direction, packaging an active skill, or scaling what already works.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -379,9 +383,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 2A
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Which one has made you the most money — even once?
+              Let&rsquo;s follow the evidence of your traction.
             </h2>
-            <p className="text-xs text-[#888888] font-light">Follow the money. It usually knows what you don&rsquo;t.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              When you have multiple talents, second-guessing is the ultimate progress killer. We want to identify where the market has already shown you a clear green light, even if it was just once, to narrow down your focus.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -411,9 +417,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 2B
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Have you ever solved this problem for someone?
+              Has this expertise been proven in the real world?
             </h2>
-            <p className="text-xs text-[#888888] font-light">Paid or unpaid. Real delivery counts.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              High-ticket validation doesn&rsquo;t require a massive client roster—it just requires proof of concept. Let us know if you have successfully delivered results for someone else, whether as a paid engagement or a free pilot.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -442,10 +450,10 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 3
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Is your offer converting the way you want it to?
+              Is your conversion funnel predictable?
             </h2>
-            <p className="text-xs text-[#888888] font-light">
-              Converting means consistent, repeatable, predictable. Not just &ldquo;I&rsquo;ve made some sales.&rdquo;
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              Making sporadic sales is common, but scaling a premium brand requires predictability. Let&rsquo;s evaluate whether your offer currently converts on-demand, or if it still relies on manual hustle and inconsistent launch cycles.
             </p>
           </div>
 
@@ -475,10 +483,10 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 4
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              Do you have a live sales page or funnel right now?
+              What is the status of your conversion assets?
             </h2>
-            <p className="text-xs text-[#888888] font-light">
-              Something built and active — not a draft, not a Notion doc.
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              We need to check the active structural layers of your digital home. Tell us if you have a fully live, customer-facing system running right now, or if we are working with a clean, distraction-free slate.
             </p>
           </div>
 
@@ -508,9 +516,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 4A
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              What are you looking to do?
+              What is the primary goal of this evolution?
             </h2>
-            <p className="text-xs text-[#888888] font-light">Help us understand where this is going.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              Since your current engine is functional, we want to treat your setup with extreme precision. Tell us if we are building a brand-new high-ticket channel from scratch, or auditing and fine-tuning your existing layers for peak capacity.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -538,9 +548,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 5
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              What do you currently have in place?
+              What assets do we have to work with?
             </h2>
-            <p className="text-xs text-[#888888] font-light">Select everything that applies.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              We don&rsquo;t believe in tearing down active machinery if it can be leveraged. Select all the active tech, content, and pipeline elements you currently have set up so we can map out your exact system integration.
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -593,9 +605,11 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               Step 6
             </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
-              When do you need this done?
+              What is your ideal window for deployment?
             </h2>
-            <p className="text-xs text-[#888888] font-light">Be realistic. This affects scope and prioritization.</p>
+            <p className="text-xs text-[#888888] font-light leading-relaxed">
+              Timing dictates our technical sequence and development velocity. Tell us your target launch horizon so we can structure a realistic, high-fidelity roadmap that aligns with your calendar.
+            </p>
           </div>
 
           <div className="space-y-3">
