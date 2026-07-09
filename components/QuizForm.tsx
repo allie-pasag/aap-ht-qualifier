@@ -64,6 +64,88 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
     onPhaseChange(getPhaseIndex(prevStep));
   };
 
+  // Check if an answer has been selected for the current step to enable forward navigation
+  const hasAnswerSelected = (): boolean => {
+    switch (currentStep) {
+      case 'identity':
+        return !!(answers.first_name?.trim() && answers.last_name?.trim() && answers.email?.trim());
+      case 'situation':
+        return !!answers.offer_status;
+      case 'most_money':
+        return !!answers.most_money;
+      case 'solved_for_someone':
+        return !!answers.solved_for_someone;
+      case 'converting':
+        return !!answers.converting;
+      case 'infrastructure':
+        return !!answers.infrastructure;
+      case 'new_or_improve':
+        return !!answers.new_or_improve;
+      case 'drill_down':
+        return !!(answers.what_they_have && answers.what_they_have.length > 0);
+      default:
+        return false;
+    }
+  };
+
+  // Universal Forward Navigation Handler
+  const handleNext = () => {
+    switch (currentStep) {
+      case 'identity':
+        handleIdentitySubmit(new Event('submit') as any);
+        break;
+      case 'situation':
+        if (answers.offer_status) {
+          if (answers.offer_status === 'multiple_ideas') {
+            transitionTo('most_money');
+          } else if (answers.offer_status === 'one_skill') {
+            transitionTo('solved_for_someone');
+          } else {
+            transitionTo('converting');
+          }
+        }
+        break;
+      case 'most_money':
+        if (answers.most_money) {
+          transitionTo('drill_down');
+        }
+        break;
+      case 'solved_for_someone':
+        if (answers.solved_for_someone) {
+          if (answers.solved_for_someone === 'yes_paid') {
+            transitionTo('converting');
+          } else {
+            transitionTo('drill_down');
+          }
+        }
+        break;
+      case 'converting':
+        if (answers.converting) {
+          transitionTo('infrastructure');
+        }
+        break;
+      case 'infrastructure':
+        if (answers.infrastructure) {
+          if (answers.converting === 'yes' && (answers.infrastructure === 'working' || answers.infrastructure === 'needs_improvement')) {
+            transitionTo('new_or_improve');
+          } else {
+            transitionTo('drill_down');
+          }
+        }
+        break;
+      case 'new_or_improve':
+        if (answers.new_or_improve) {
+          transitionTo('drill_down');
+        }
+        break;
+      case 'drill_down':
+        handleDrillDownSubmit();
+        break;
+      default:
+        break;
+    }
+  };
+
   // Step 1: Validation and submission
   const handleIdentitySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,17 +258,6 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
 
   return (
     <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-center min-h-[80vh] font-sans">
-      {/* Back button */}
-      {currentStep !== 'identity' && (
-        <button
-          onClick={handleBack}
-          className="flex items-center space-x-1.5 text-xs text-[#888888] hover:text-white transition-colors mb-6 self-start group"
-        >
-          <span className="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
-          <span>Back</span>
-        </button>
-      )}
-
       {/* Render Steps */}
       {currentStep === 'identity' && (
         <form onSubmit={handleIdentitySubmit} className="space-y-6 animate-fadeIn">
@@ -512,13 +583,6 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
           </div>
 
           {errors.what_they_have && <span className="text-[10px] text-red-500 block">{errors.what_they_have}</span>}
-
-          <button
-            onClick={handleDrillDownSubmit}
-            className="w-full md:w-auto px-8 py-3 bg-[#E040FB] text-black font-semibold text-sm rounded border border-[#E040FB] hover:shadow-[0_0_15px_rgba(224,64,251,0.3)] transition-all duration-300 self-start"
-          >
-            Continue →
-          </button>
         </div>
       )}
 
@@ -552,6 +616,33 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
           </div>
         </div>
       )}
+
+      {/* Modern Unified Bottom Navigation Footer */}
+      <div className="flex justify-between items-center mt-12 pt-6 border-t border-[#222222]/40 w-full">
+        {/* Back Button */}
+        {currentStep !== 'identity' ? (
+          <button
+            onClick={handleBack}
+            className="flex items-center space-x-1.5 text-xs text-[#888888] hover:text-white transition-colors group px-4 py-2 border border-[#222] hover:border-[#444] rounded bg-[#111]/40"
+          >
+            <span className="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
+            <span>Back</span>
+          </button>
+        ) : (
+          <div /> // empty placeholder to align Next button to the right
+        )}
+
+        {/* Next Button */}
+        {currentStep !== 'urgency' && hasAnswerSelected() && (
+          <button
+            onClick={handleNext}
+            className="flex items-center space-x-1.5 text-xs text-white hover:text-white bg-[#E040FB]/10 hover:bg-[#E040FB]/20 border border-[#E040FB]/30 hover:border-[#E040FB]/60 px-4 py-2 rounded transition-all duration-300 group shadow-[0_0_15px_rgba(224,64,251,0.05)]"
+          >
+            <span>Next</span>
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
