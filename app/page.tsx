@@ -115,7 +115,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white flex flex-col md:flex-row relative">
+    <div className="min-h-screen premium-grid-bg text-white flex flex-col md:flex-row relative">
       {/* 220px Fixed Sidebar Navigation */}
       <Sidebar currentStep={screen} activePhaseIndex={activePhaseIndex} />
 

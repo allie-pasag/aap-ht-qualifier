@@ -79,7 +79,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white flex flex-col font-sans selection:bg-[#E040FB] selection:text-black">
+    <div className="min-h-screen premium-grid-bg text-white flex flex-col font-sans selection:bg-[#E040FB] selection:text-black">
       {/* Navigation Header */}
       <header className="max-w-6xl mx-auto w-full px-6 py-6 flex items-center justify-between border-b border-[#222222]/30">
         <div className="flex items-center -my-8">

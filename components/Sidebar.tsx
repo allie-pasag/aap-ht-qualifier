@@ -20,6 +20,14 @@ const phases = [
 export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps) {
   const [imageError, setImageError] = useState(false);
 
+  // Highlight the 7th item (index 6) when the results screen is active
+  const effectivePhaseIndex = currentStep === 'results' ? 6 : activePhaseIndex;
+
+  const sidebarPhases = [
+    ...phases,
+    ...(currentStep === 'results' ? [{ name: 'Superpower Blueprint', desc: 'Where You Are, What You Need To DO Next' }] : [])
+  ];
+
   return (
     <aside className="w-full md:w-[240px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
       {/* Top Branding & Headshot */}
@@ -69,9 +77,10 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
 
       {/* Progress Dots */}
       <div className="my-6 md:my-8 py-4 md:py-0 border-t border-b border-[#222222] md:border-0 flex md:flex-col items-center justify-center md:items-start md:justify-start space-x-4 md:space-x-0 md:space-y-4 overflow-x-auto md:overflow-x-visible no-scrollbar">
-        {phases.map((phase, idx) => {
-          const isComplete = idx < activePhaseIndex;
-          const isActive = idx === activePhaseIndex;
+        {sidebarPhases.map((phase, idx) => {
+          const isComplete = idx < effectivePhaseIndex;
+          const isActive = idx === effectivePhaseIndex;
+          const isSuperpower = phase.name === 'Superpower Blueprint';
           
           return (
             <div key={phase.name} className="flex items-center space-x-3 group relative cursor-pointer flex-shrink-0">
@@ -99,11 +108,19 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
               {/* Label (Visible on md+) */}
               <div className="hidden md:flex flex-col text-left">
                 <span className={`text-[10px] uppercase tracking-[0.15em] font-medium leading-none ${
-                  isActive ? 'text-white font-semibold' : isComplete ? 'text-[#888888]' : 'text-[#444444]'
+                  isActive 
+                    ? isSuperpower 
+                      ? 'text-[#E040FB] font-bold shadow-sm' 
+                      : 'text-white font-semibold' 
+                    : isComplete 
+                      ? 'text-[#888888]' 
+                      : 'text-[#444444]'
                 }`}>
                   {phase.name}
                 </span>
-                <span className="text-[9px] text-[#555] font-light mt-0.5">
+                <span className={`text-[9px] font-light mt-0.5 max-w-[170px] ${
+                  isSuperpower ? 'text-[#888888]' : 'text-[#555]'
+                }`}>
                   {phase.desc}
                 </span>
               </div>
