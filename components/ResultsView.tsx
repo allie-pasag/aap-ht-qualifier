@@ -76,7 +76,7 @@ export default function ResultsView({
           {/* Header Texts (Left Column) */}
           <div className="space-y-3 text-center sm:text-left flex-grow flex flex-col justify-center">
             <span className="text-[10px] uppercase tracking-[0.25em] text-[#888888] font-medium leading-none block">
-              Your Readiness Report — {firstName.toUpperCase()}
+              Your Superpower Blueprint — {firstName.toUpperCase()}
             </span>
             <h1 className="font-serif text-2xl md:text-3xl text-white font-semibold leading-snug">
               {result.headline}
