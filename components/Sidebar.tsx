@@ -14,19 +14,15 @@ const phases = [
   { name: 'Offer Path', desc: 'Offer validation & history' },
   { name: 'Operations', desc: 'System & conversion health' },
   { name: 'Assets', desc: 'Existing collateral' },
-  { name: 'Timeline', desc: 'Urgency & goals' }
+  { name: 'Timeline', desc: 'Urgency & goals' },
+  { name: 'Superpower Blueprint', desc: 'Where You Are, What You Need To DO Next' }
 ];
 
 export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Highlight the 7th item (index 6) when the results screen is active
-  const effectivePhaseIndex = currentStep === 'results' ? 6 : activePhaseIndex;
-
-  const sidebarPhases = [
-    ...phases,
-    ...(currentStep === 'results' ? [{ name: 'Superpower Blueprint', desc: 'Where You Are, What You Need To DO Next' }] : [])
-  ];
+  // Highlight the 7th item (index 6) when the results or loading screen is active
+  const effectivePhaseIndex = (currentStep === 'results' || currentStep === 'loading') ? 6 : activePhaseIndex;
 
   return (
     <aside className="w-full md:w-[240px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
@@ -79,7 +75,7 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
 
       {/* Progress Dots */}
       <div className="my-6 md:my-8 py-4 md:py-0 border-t border-b border-[#222222] md:border-0 flex md:flex-col items-center justify-center md:items-start md:justify-start space-x-4 md:space-x-0 md:space-y-4 overflow-x-auto md:overflow-x-visible no-scrollbar">
-        {sidebarPhases.map((phase, idx) => {
+        {phases.map((phase, idx) => {
           const isComplete = idx < effectivePhaseIndex;
           const isActive = idx === effectivePhaseIndex;
           const isSuperpower = phase.name === 'Superpower Blueprint';
