@@ -33,7 +33,7 @@ const clientProfiles: Record<string, ClientProfileData> = {
   '2': {
     percentage: 44,
     statusTitle: 'Warming up.',
-    statusSubtext: 'The expertise is fully proven; it just remains unstructured. This is a packaging and positioning job, not a rebuild.',
+    statusSubtext: 'The expertise is fully real, but it remains unstructured. This is a packaging and positioning job, not a rebuild.',
     whatToBuildNext: [
       'Audit your raw expertise and lock down the primary commercial skill.',
       'Structure your deliverables into a repeating, high-ticket package.',
@@ -93,23 +93,20 @@ export default function ResultsView({
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showBookingModal, setShowBookingModal] = useState(false);
 
-  // Retrieve client profile based on the output category (with safety fallback)
   const profile = clientProfiles[result.client_type] || clientProfiles['1'];
-
-  // Bucket C uses optimization language, while Buckets A & B use build language
   const buildHeading = result.client_bucket === 'C' ? 'WHAT TO OPTIMIZE NEXT' : 'WHAT TO BUILD NEXT';
 
   return (
     <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-start min-h-[90vh] font-sans animate-fadeIn selection:bg-[#E040FB] selection:text-black">
       
       {/* Top Header Row (Reset/Retake and Status Indicator) */}
-      <div className="flex justify-between items-center mb-8">
-        <span className="text-[10px] uppercase tracking-[0.25em] text-[#E040FB] font-semibold bg-[#E040FB]/5 border border-[#E040FB]/10 rounded-full px-3 py-1">
+      <div className="flex justify-between items-center mb-10 flex-shrink-0">
+        <span className="text-[10px] uppercase tracking-[0.25em] text-[#E040FB] font-semibold bg-[#E040FB]/10 border border-[#E040FB]/20 rounded-full px-3 py-1">
           Analysis Complete
         </span>
         
         {showResetConfirm ? (
-          <div className="flex items-center space-x-2 bg-[#161616] border border-[#222] px-3 py-1 rounded-full animate-fadeIn">
+          <div className="flex items-center space-x-2 bg-[#121214] border border-[#2c2c35] px-3 py-1 rounded-full animate-fadeIn">
             <span className="text-[9px] text-[#888]">Confirm reset?</span>
             <button
               onClick={onReset}
@@ -136,7 +133,6 @@ export default function ResultsView({
         )}
       </div>
 
-      {/* Inline Animation styles */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes subtleBob {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -148,8 +144,8 @@ export default function ResultsView({
       `}} />
 
       {/* Headline & Avatar Split Section */}
-      <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 mb-8">
-        <div className="space-y-3 text-center sm:text-left flex-grow">
+      <div className="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-6 mb-10">
+        <div className="space-y-3.5 text-center sm:text-left flex-grow">
           <span className="text-[10px] uppercase tracking-[0.25em] text-white/50 font-bold leading-none block">
             YOUR SUPERPOWER BLUEPRINT — {firstName.toUpperCase()}
           </span>
@@ -169,20 +165,23 @@ export default function ResultsView({
         </div>
       </div>
 
-      {/* Situation Summary */}
-      <div className="space-y-2 mb-8">
-        <span className="text-[10px] uppercase tracking-[0.15em] text-white/40 font-bold block">
+      {/* SECTION 1: Situation Summary */}
+      <div className="space-y-3 mb-8">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold block">
           SITUATION SUMMARY
         </span>
-        <p className="text-sm text-[#888888] font-light leading-relaxed">
+        <p className="text-sm text-[#9e9ea7] font-light leading-relaxed">
           {result.summary}
         </p>
       </div>
 
-      {/* Allie's Diagnosis Card */}
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 2: Allie's Diagnosis Card */}
       <div className="relative group mb-8">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#E040FB]/5 to-transparent rounded-xl blur-md"></div>
-        <div className="relative bg-[#111111]/40 border border-[#222222]/50 p-6 rounded-xl space-y-3">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#E040FB]/10 to-transparent rounded-xl blur-md"></div>
+        <div className="relative bg-[#0c0c10]/90 border border-[#2c2c35] p-6 rounded-xl space-y-3.5 shadow-xl shadow-black/20">
           <div className="flex items-center space-x-2">
             <div className="w-1.5 h-1.5 rounded-full bg-[#E040FB]"></div>
             <span className="text-[9px] uppercase tracking-[0.15em] text-[#E040FB] font-bold">
@@ -195,78 +194,83 @@ export default function ResultsView({
         </div>
       </div>
 
-      {/* High-Ticket Readiness Progress Card */}
-      <div className="bg-[#111111]/40 border border-[#222222]/50 rounded-xl p-6 mb-8 space-y-4">
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 3: High-Ticket Readiness Progress Card */}
+      <div className="bg-[#0c0c10]/90 border border-[#2c2c35] rounded-xl p-6 mb-8 space-y-4 shadow-xl shadow-black/20">
         <div className="flex justify-between items-baseline">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-[#888888] font-bold">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">
             HIGH-TICKET READINESS
           </span>
-          <span className="font-serif text-3xl font-medium text-[#E040FB]">
+          <span className="font-serif text-3xl font-medium text-[#E040FB] tracking-tight">
             {profile.percentage}%
           </span>
         </div>
         
         {/* Sleek horizontal progress bar */}
-        <div className="w-full bg-[#161619] h-1.5 rounded-full overflow-hidden">
+        <div className="w-full bg-[#141417] h-1.5 rounded-full overflow-hidden">
           <div 
-            className="bg-[#E040FB] h-full rounded-full transition-all duration-1000 ease-out shadow-sm shadow-[#E040FB]/30"
+            className="bg-[#E040FB] h-full rounded-full transition-all duration-1000 ease-out shadow-[0_0_12px_rgba(224,64,251,0.6)]"
             style={{ width: `${profile.percentage}%` }}
           ></div>
         </div>
         
         {/* Progress Subtext */}
-        <p className="text-xs text-[#888888] font-light leading-relaxed">
+        <p className="text-xs text-[#9e9ea7] font-light leading-relaxed">
           <span className="font-bold text-white mr-1.5">{profile.statusTitle}</span>
           {profile.statusSubtext}
         </p>
       </div>
 
-      {/* Structural Parameters Grid (2x2) */}
-      <div className="space-y-3 mb-12">
-        <span className="text-[10px] uppercase tracking-[0.15em] text-white/40 font-bold block">
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 4: Structural Parameters Grid */}
+      <div className="space-y-4 mb-8">
+        <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold block">
           STRUCTURAL PARAMETERS
         </span>
         <div className="grid grid-cols-2 gap-4">
-          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
-            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Offer Status</span>
+          <div className="bg-[#0c0c10]/90 border border-[#2c2c35] p-5 rounded-xl flex flex-col justify-between space-y-2 shadow-lg shadow-black/10">
+            <span className="text-[9px] text-[#666677] font-bold uppercase tracking-[0.1em]">Offer Status</span>
             <span className="text-sm font-semibold text-white font-serif">{result.status_tiles.offer_status}</span>
           </div>
-          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
-            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Validation</span>
-            <span className={`text-sm font-semibold font-serif ${
-              result.status_tiles.validation === 'Proven' ? 'text-green-500' : 'text-white'
-            }`}>
+          <div className="bg-[#0c0c10]/90 border border-[#2c2c35] p-5 rounded-xl flex flex-col justify-between space-y-2 shadow-lg shadow-black/10">
+            <span className="text-[9px] text-[#666677] font-bold uppercase tracking-[0.1em]">Validation</span>
+            <span className="text-sm font-semibold text-green-400 font-serif">
               {result.status_tiles.validation}
             </span>
           </div>
-          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
-            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Conversion Health</span>
-            <span className={`text-sm font-semibold font-serif ${
-              result.status_tiles.conversion === 'Working' ? 'text-[#E040FB]' : 'text-white'
-            }`}>
+          <div className="bg-[#0c0c10]/90 border border-[#2c2c35] p-5 rounded-xl flex flex-col justify-between space-y-2 shadow-lg shadow-black/10">
+            <span className="text-[9px] text-[#666677] font-bold uppercase tracking-[0.1em]">Conversion Health</span>
+            <span className="text-sm font-semibold text-[#E040FB] font-serif">
               {result.status_tiles.conversion}
             </span>
           </div>
-          <div className="bg-[#111111]/40 border border-[#222222]/50 p-4 rounded-xl flex flex-col justify-between space-y-1">
-            <span className="text-[10px] text-[#444] font-bold uppercase tracking-[0.1em]">Target Timeline</span>
+          <div className="bg-[#0c0c10]/90 border border-[#2c2c35] p-5 rounded-xl flex flex-col justify-between space-y-2 shadow-lg shadow-black/10">
+            <span className="text-[9px] text-[#666677] font-bold uppercase tracking-[0.1em]">Target Timeline</span>
             <span className="text-sm font-semibold text-white font-serif">{result.status_tiles.timeline}</span>
           </div>
         </div>
       </div>
 
-      {/* What To Optimize/Build Next checklist */}
-      <div className="mb-12 space-y-6">
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 5: What To Optimize/Build Next Checklist */}
+      <div className="mb-8 space-y-6">
         <h2 className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-bold block">
           {buildHeading}
         </h2>
         
-        <div className="border-t border-[#222222] divide-y divide-[#222222]">
+        <div className="border-t border-[#2c2c35] divide-y divide-[#2c2c35]">
           {profile.whatToBuildNext.map((step, idx) => (
-            <div key={idx} className="py-4 flex items-start space-x-4">
+            <div key={idx} className="py-5 flex items-start space-x-4">
               <span className="font-serif text-sm text-[#E040FB] font-medium pt-0.5">
                 0{idx + 1}
               </span>
-              <p className="text-sm text-white/90 font-light leading-relaxed">
+              <p className="text-sm text-white/95 font-light leading-relaxed">
                 {step}
               </p>
             </div>
@@ -274,9 +278,13 @@ export default function ResultsView({
         </div>
       </div>
 
-      {/* Pre-Framed Investment Block */}
-      <div className="mb-12 bg-[#111111]/30 border border-[#222222]/50 p-6 rounded-xl space-y-3">
-        <span className="text-[9px] uppercase tracking-[0.15em] text-[#E040FB] font-bold block">
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 6: Pre-Framed Investment Block */}
+      <div className="mb-10 bg-[#0c0c10]/80 border border-[#2c2c35] p-6 rounded-xl space-y-4 shadow-xl shadow-black/20 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-1 h-full bg-[#E040FB]"></div>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-[#E040FB] font-bold block">
           PRE-FRAMED INVESTMENT
         </span>
         <div className="flex flex-col md:flex-row md:items-baseline md:space-x-3">
@@ -284,23 +292,26 @@ export default function ResultsView({
             {result.price_anchor}
           </span>
         </div>
-        <p className="text-xs text-[#888888] font-light leading-relaxed pt-2.5 border-t border-[#222222]/40">
+        <p className="text-xs text-[#9e9ea7] font-light leading-relaxed pt-3 border-t border-white/5">
           {result.price_note || 'Investment thresholds reflect the design, copywriting, and setup standards matching this segment.'}
         </p>
       </div>
 
-      {/* Call to Action Schedule Block */}
-      <div className="pt-6 border-t border-[#222222]/50 space-y-6 text-center">
-        <div className="space-y-2 max-w-xl mx-auto">
+      {/* Section Divider */}
+      <hr className="border-t border-white/5 my-8" />
+
+      {/* SECTION 7: Book a Strategy Call */}
+      <div className="pt-4 space-y-8 text-center">
+        <div className="space-y-2.5 max-w-xl mx-auto">
           <h3 className="font-serif text-2xl text-white font-medium">
             Ready to talk?
           </h3>
-          <p className="text-xs text-[#888888] font-light leading-relaxed">
+          <p className="text-xs text-[#9e9ea7] font-light leading-relaxed">
             Your personalized high-ticket diagnostic report has been compiled. Let&rsquo;s audit this report together and map your actual build plan.
           </p>
         </div>
 
-        <div className="bg-[#111111]/40 border border-[#222222]/50 p-6 rounded-xl space-y-4 max-w-2xl mx-auto">
+        <div className="bg-[#0c0c10]/90 border border-[#2c2c35] p-6 rounded-xl space-y-4 max-w-2xl mx-auto shadow-2xl shadow-black/30">
           <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-bold block text-center">
             BOOK A STRATEGY CALL WITH ALLIE
           </span>
@@ -308,7 +319,7 @@ export default function ResultsView({
           <button
             type="button"
             onClick={() => setShowBookingModal(true)}
-            className="w-full py-4 text-sm font-semibold rounded bg-[#E040FB] text-black hover:shadow-[0_0_20px_rgba(224,64,251,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
+            className="w-full py-4 text-sm font-semibold rounded bg-[#E040FB] text-black hover:shadow-[0_0_25px_rgba(224,64,251,0.6)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
           >
             <span>Schedule My Strategy Call</span>
             <span>&rarr;</span>
@@ -323,10 +334,10 @@ export default function ResultsView({
       {/* Embedded Popup Modal */}
       {showBookingModal && (
         <div className="fixed inset-0 bg-black/95 backdrop-blur-md flex items-center justify-center z-[9999] p-0 md:p-6 animate-fadeIn">
-          <div className="relative bg-[#111] md:border md:border-[#222] w-full h-full md:h-[85vh] md:max-w-2xl md:rounded-2xl overflow-hidden shadow-2xl animate-scaleIn flex flex-col">
+          <div className="relative bg-[#0c0c10] md:border md:border-[#2c2c35] w-full h-full md:h-[85vh] md:max-w-2xl md:rounded-2xl overflow-hidden shadow-2xl animate-scaleIn flex flex-col">
             
             {/* Modal Header */}
-            <div className="p-4 bg-[#141414] border-b border-[#222] flex justify-between items-center flex-shrink-0">
+            <div className="p-4 bg-[#111114] border-b border-[#2c2c35] flex justify-between items-center flex-shrink-0">
               <div className="flex items-center space-x-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#E040FB] animate-pulse"></span>
                 <span className="text-xs uppercase tracking-wider text-[#E040FB] font-semibold">Live Booking Scheduler</span>
@@ -342,12 +353,12 @@ export default function ResultsView({
             </div>
 
             {/* Embedded BLAB Iframe */}
-            <div className="flex-grow w-full relative bg-[#111]">
+            <div className="flex-grow w-full relative bg-[#0c0c10]">
               <iframe
                 src={`https://bookme.name/askalliepasag/lite/discovery-call?firstname=${encodeURIComponent(firstName)}&lastname=${encodeURIComponent(lastName)}&email=${encodeURIComponent(email)}`}
                 width="100%"
                 height="100%"
-                style={{ border: 'none', background: '#111' }}
+                style={{ border: 'none', background: '#0c0c10' }}
                 title="Book Allie Pasag Discovery Call"
               />
             </div>

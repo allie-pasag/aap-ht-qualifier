@@ -647,7 +647,7 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
         )}
 
         {/* Next Button */}
-        {currentStep !== 'urgency' && hasAnswerSelected() && (
+        {currentStep !== 'urgency' && currentStep !== 'identity' && hasAnswerSelected() && (
           <button
             onClick={handleNext}
             className="flex items-center space-x-1.5 text-xs text-white hover:text-white bg-[#E040FB]/10 hover:bg-[#E040FB]/20 border border-[#E040FB]/30 hover:border-[#E040FB]/60 px-4 py-2 rounded transition-all duration-300 group shadow-[0_0_15px_rgba(224,64,251,0.05)]"
