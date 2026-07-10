@@ -351,9 +351,9 @@ export default function LandingView({ onStart }: LandingViewProps) {
         </header>
 
         {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (IMAGE LEFT, TEXT RIGHT) WITH HERO BACKGROUND ===== */}
-        <section className="relative w-screen left-1/2 ml-[-50vw] bg-[#140F0C] border-b border-luxe-cream/10 py-20 overflow-hidden z-20">
-          {/* Ambient Glows from the original hero background */}
-          <div className="absolute inset-0 pointer-events-none z-0">
+        <section className="relative w-screen left-1/2 ml-[-50vw] bg-white lg:bg-[#140F0C] border-b border-black/10 lg:border-luxe-cream/10 py-12 lg:py-20 overflow-hidden z-20 transition-colors duration-300">
+          {/* Ambient Glows from the original hero background (Desktop only) */}
+          <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
             <div className="absolute top-[-320px] right-[-140px] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(236,95,180,0.15),transparent_62%)] filter blur-[20px]"></div>
             <div className="absolute top-[520px] left-[-260px] w-[760px] h-[760px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(58,50,42,0.40),transparent_60%)] filter blur-[30px]"></div>
           </div>
@@ -363,11 +363,12 @@ export default function LandingView({ onStart }: LandingViewProps) {
               
               {/* Left Column: Image of the one (Allie landscape) */}
               <div className="lg:col-span-6 w-full">
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/40">
+                {/* On mobile: stretched full screen width, white background container, image scaled to 90% and pushed to the left */}
+                <div className="relative w-screen left-1/2 ml-[-50vw] lg:w-full lg:left-0 lg:ml-0 aspect-[16/10] sm:aspect-[16/9] lg:rounded-2xl overflow-hidden border-y lg:border border-black/5 lg:border-white/[0.08] shadow-none lg:shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-white lg:bg-black/40">
                   <img 
                     src="/hero-allie.png" 
                     alt="Allie Pasag Hero Landscape" 
-                    className="w-full h-full object-cover"
+                    className="w-[90%] lg:w-full h-full object-cover mr-auto block"
                   />
                 </div>
               </div>
@@ -377,11 +378,13 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-4 py-1.5 w-fit bg-[#EC5FB4]/5">
                   Your Diagnosis Preview
                 </div>
-                <h3 className="font-serif font-medium text-2xl sm:text-3xl lg:text-[32px] leading-[1.22] text-white">
+                {/* High contrast dark ink on mobile white background, white on desktop */}
+                <h3 className="font-serif font-medium text-2xl sm:text-3xl lg:text-[32px] leading-[1.22] text-dark-ink lg:text-white transition-colors duration-300">
                   Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
                 </h3>
-                <div className="h-[1px] bg-white/10 my-4 w-full"></div>
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#C6BAAC] font-light">
+                <div className="h-[1px] bg-black/10 lg:bg-white/10 my-4 w-full"></div>
+                {/* High contrast ash on mobile white background, light champagne on desktop */}
+                <p className="font-sans text-sm sm:text-base leading-relaxed text-ash lg:text-[#C6BAAC] font-light transition-colors duration-300">
                   Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
                 </p>
               </div>
