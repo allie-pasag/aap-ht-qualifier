@@ -371,7 +371,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
               </h3>
               <div className="h-[1px] bg-black/10 w-full"></div>
-              <p className="font-sans text-[9px] sm:text-xs md:text-sm leading-relaxed text-ash font-light">
+              <p className="font-sans text-[11.5px] sm:text-[14.5px] md:text-base leading-relaxed text-ash font-normal">
                 Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
               </p>
             </div>
@@ -486,8 +486,8 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 <blockquote className="font-serif font-medium text-3xl md:text-4xl lg:text-[44px] leading-[1.14] tracking-tight text-dark-ink max-w-[20ch] m-0 mb-4.5">
                   “Stop guessing what niche or funnel will <span className="font-serif italic text-[#EC5FB4]">save you.</span>”
                 </blockquote>
-                <p className="font-sans text-base md:text-[16.5px] leading-relaxed text-dark-body font-light mb-4 max-w-[56ch]">
-                  I build offers that sell themselves — the launch systems, positioning, and high-ticket sales mechanics for coaches and course creators who have real authority but need the engine to scale.
+                <p className="font-sans text-lg md:text-[20px] leading-relaxed text-dark-ink font-semibold mb-5 max-w-[56ch]">
+                  Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
                 </p>
                 <p className="font-sans text-base md:text-[16.5px] leading-relaxed text-dark-body font-light mb-4.5 max-w-[56ch]">
                   Most offers stall because they were never actually diagnosed or positioned. This assessment is the exact framework I use on consultation calls — it separates the marketing noise from your real bottleneck.
