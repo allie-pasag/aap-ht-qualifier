@@ -359,23 +359,23 @@ export default function LandingView({ onStart }: LandingViewProps) {
               alt="Allie Mobile Background" 
             />
           </div>
-          <div className="relative z-10 w-full flex justify-end py-7 pr-5 pl-1 min-h-[220px] sm:min-h-[280px]">
-            <div className="w-[55%] flex flex-col justify-center space-y-1.5 sm:space-y-3 pl-1">
-              <div className="inline-block font-sans text-[7.5px] sm:text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 py-0.5 w-fit bg-[#EC5FB4]/5">
+          <div className="relative z-10 w-full flex justify-center items-end min-h-[280px] sm:min-h-[340px] pb-8 px-6">
+            <div className="w-full max-w-[280px] sm:max-w-[340px] bg-white/90 backdrop-blur-sm rounded-xl px-5 py-5 flex flex-col items-center text-center space-y-2">
+              <div className="inline-block font-sans text-[7.5px] sm:text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 py-0.5 bg-[#EC5FB4]/5">
                 Your Diagnosis Preview
               </div>
-              <h3 className="font-serif font-bold text-[16px] sm:text-[20px] md:text-2xl leading-[1.25] text-dark-ink">
+              <h3 className="font-serif font-bold text-[16px] sm:text-[20px] leading-[1.25] text-dark-ink text-center">
                 Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
               </h3>
             </div>
           </div>
         </section>
 
-        {/* ===== CLEAR BEATS CLEVER - Separate section with pink-over-black translucent background ===== */}
-        <section className="lg:hidden relative w-screen left-1/2 ml-[-50vw] z-20 mt-4 mb-4">
+        {/* ===== CLEAR BEATS CLEVER - Separate section ===== */}
+        <section className="lg:hidden relative w-screen left-1/2 ml-[-50vw] z-20 my-4">
           <div className="bg-[#15110E] border-t border-b border-[#EC5FB4]/20">
-            <div className="bg-[#EC5FB4]/10 px-6 py-8">
-              <p className="font-sans text-[13px] sm:text-[15px] leading-relaxed text-[#EFE7DB] font-medium">
+            <div className="bg-[#EC5FB4]/10 px-6 py-8 flex justify-center">
+              <p className="font-sans text-[13px] sm:text-[15px] leading-relaxed text-[#EFE7DB] font-medium text-center max-w-[480px]">
                 Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
               </p>
             </div>
