@@ -316,7 +316,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
         </div>
 
         {/* ===== HERO SECTION (Responsive background image layout with split text & preview bubble) ===== */}
-        <header className="hero relative w-screen left-1/2 ml-[-50vw] bg-black overflow-hidden border-b border-white/5 min-h-[520px] lg:min-h-[640px] flex items-center">
+        <header className="relative w-screen left-1/2 ml-[-50vw] bg-black overflow-hidden border-b border-white/5 min-h-[520px] lg:min-h-[640px] flex items-center">
           {/* Background Image for desktop */}
           <div className="absolute inset-0 w-full h-full hidden lg:block">
             <img 
@@ -334,42 +334,51 @@ export default function LandingView({ onStart }: LandingViewProps) {
               {/* Left Column - Main Copy */}
               <div className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
                 
-                <span className="hidden md:block font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold">
-                  Allie Pasag Hero Landscape
-                </span>
-
-                <div className="font-sans text-base sm:text-lg md:text-xl lg:text-[22px] text-[#EC5FB4] font-medium tracking-wide leading-relaxed max-w-2xl">
+                <div className="font-sans text-xs sm:text-sm lg:text-[15px] text-[#C6BAAC]/90 font-light tracking-wide leading-relaxed max-w-2xl">
                   Still guessing which niche, funnel, or price will finally click?
                 </div>
 
-                <h1 className="font-serif font-medium text-[44px] md:text-5xl lg:text-[54px] text-white leading-[1.1] tracking-tight max-w-3xl">
+                <h1 className="font-serif font-light text-[38px] md:text-5xl lg:text-[60px] text-white leading-[1.05] tracking-tight max-w-xl">
                   Find out exactly where you <span className="font-serif italic font-normal text-[#EC5FB4]">are</span> — and what to fix first.
                 </h1>
 
-                <p className="font-sans text-sm sm:text-base md:text-lg text-[#C6BAAC] font-light leading-relaxed max-w-2xl">
+                <p className="font-sans text-xs sm:text-sm lg:text-[15px] text-[#A69B8F] font-light leading-relaxed max-w-[460px]">
                   Answer 6 questions. Get a personalized high-ticket readiness report — instantly.
                 </p>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <button
                     onClick={onStart}
-                    className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
+                    className="inline-flex items-center justify-center font-sans text-[13px] tracking-widest font-semibold text-white uppercase bg-[#EC5FB4] hover:bg-[#d44fa0] active:scale-[0.98] rounded-full px-8 py-3.5 shadow-[0_12px_35px_rgba(236,95,180,0.3)] transition-all duration-300 cursor-pointer"
                   >
-                    START THE ASSESSMENT &rarr;
+                    Start the assessment &rarr;
                   </button>
                 </div>
 
               </div>
 
               {/* Right Column - Diagnosis Preview (only visible on desktop on white space) */}
-              <div className="hidden lg:flex col-span-5 flex-col items-center text-center justify-center pl-8">
-                <div className="max-w-[340px] flex flex-col items-center justify-center text-center space-y-3.5 px-4">
-                  <div className="inline-block font-sans text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2.5 py-0.5 bg-[#EC5FB4]/5">
-                    Your Diagnosis Preview
+              <div className="hidden lg:flex col-span-5 flex-col items-center justify-center">
+                <div className="w-full max-w-[340px] xl:max-w-[380px] ml-auto mr-0 xl:mr-10">
+                  <div className="flex flex-col items-start space-y-4 text-left">
+                    {/* YOUR RESULT Pill */}
+                    <div className="inline-block font-sans text-[9px] tracking-[0.18em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-3 py-1 bg-[#EC5FB4]/5">
+                      YOUR RESULT
+                    </div>
+                    
+                    {/* Main bold text */}
+                    <h3 className="font-serif font-medium text-[20px] xl:text-[23px] leading-[1.3] text-[#1A140F]">
+                      Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
+                    </h3>
+                    
+                    {/* Thin Divider Line */}
+                    <div className="w-full h-[1px] bg-black/10 my-1"></div>
+                    
+                    {/* Clear beats clever sentence */}
+                    <p className="font-sans text-[12px] xl:text-[14px] text-[#5C534C] font-light leading-relaxed">
+                      Clear beats clever. Every time.
+                    </p>
                   </div>
-                  <h3 className="font-serif font-bold text-[21px] leading-[1.3] text-dark-ink text-center">
-                    Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
-                  </h3>
                 </div>
               </div>
 
@@ -405,46 +414,6 @@ export default function LandingView({ onStart }: LandingViewProps) {
               <p className="font-sans text-[13px] sm:text-[15px] leading-relaxed text-[#EFE7DB] font-medium text-center max-w-[480px]">
                 Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (Desktop Layout) ===== */}
-        <section className="hidden lg:block relative w-screen left-1/2 ml-[-50vw] bg-[#140F0C] border-b border-luxe-cream/10 py-20 overflow-hidden z-20">
-          {/* Ambient Glows from the original hero background */}
-          <div className="absolute inset-0 pointer-events-none z-0">
-            <div className="absolute top-[-320px] right-[-140px] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(236,95,180,0.15),transparent_62%)] filter blur-[20px]"></div>
-            <div className="absolute top-[520px] left-[-260px] w-[760px] h-[760px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(58,50,42,0.40),transparent_60%)] filter blur-[30px]"></div>
-          </div>
-
-          <div className="relative z-10 max-w-[1140px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-12 gap-14 items-center">
-              
-              {/* Left Column: Image of the woman (Allie landscape) */}
-              <div className="col-span-6 w-full">
-                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/40">
-                  <img 
-                    src="/hero-allie.png" 
-                    alt="Allie Pasag Hero Landscape" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
-              {/* Right Column: Diagnostic Text */}
-              <div className="col-span-6 text-left flex flex-col justify-center space-y-4">
-                <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-4 py-1.5 w-fit bg-[#EC5FB4]/5">
-                  Your Diagnosis Preview
-                </div>
-                <h3 className="font-serif font-medium text-[32px] leading-[1.22] text-white">
-                  Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
-                </h3>
-                <div className="h-[1px] bg-white/10 my-4 w-full"></div>
-                <p className="font-sans text-base leading-relaxed text-[#C6BAAC] font-light">
-                  Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
-                </p>
-              </div>
-
             </div>
           </div>
         </section>
