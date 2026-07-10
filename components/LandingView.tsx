@@ -315,38 +315,65 @@ export default function LandingView({ onStart }: LandingViewProps) {
           </div>
         </div>
 
-        {/* ===== HERO SECTION (Minimalist Black Canvas & Headline in Black background container) ===== */}
-        <header className="hero relative w-screen left-1/2 ml-[-50vw] bg-black py-16 sm:py-24 md:py-32 flex items-center justify-center border-b border-white/5">
-          <div className="max-w-[1140px] mx-auto px-6 md:px-10 w-full flex flex-col items-center justify-center text-center space-y-6">
-            
-            <span className="hidden md:block font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold">
-              Allie Pasag Hero Landscape
-            </span>
+        {/* ===== HERO SECTION (Responsive background image layout with split text & preview bubble) ===== */}
+        <header className="hero relative w-screen left-1/2 ml-[-50vw] bg-black overflow-hidden border-b border-white/5 min-h-[520px] lg:min-h-[640px] flex items-center">
+          {/* Background Image for desktop */}
+          <div className="absolute inset-0 w-full h-full hidden lg:block">
+            <img 
+              src="/hero-allie.png" 
+              className="w-full h-full object-cover object-center" 
+              alt="Allie Hero Background" 
+            />
+            {/* Dark gradient on the left side to ensure text readability */}
+            <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-black via-black/85 to-transparent pointer-events-none"></div>
+          </div>
 
-            <div className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl text-[#EC5FB4] font-medium tracking-wide leading-relaxed max-w-2xl">
-              Still guessing which niche, funnel, or price will finally click?
+          <div className="relative z-10 max-w-[1140px] mx-auto px-6 md:px-10 w-full py-16 lg:py-24">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              
+              {/* Left Column - Main Copy */}
+              <div className="col-span-1 lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+                
+                <span className="hidden md:block font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold">
+                  Allie Pasag Hero Landscape
+                </span>
+
+                <div className="font-sans text-base sm:text-lg md:text-xl lg:text-[22px] text-[#EC5FB4] font-medium tracking-wide leading-relaxed max-w-2xl">
+                  Still guessing which niche, funnel, or price will finally click?
+                </div>
+
+                <h1 className="font-serif font-medium text-[44px] md:text-5xl lg:text-[54px] text-white leading-[1.1] tracking-tight max-w-3xl">
+                  Find out exactly where you <span className="font-serif italic font-normal text-[#EC5FB4]">are</span> — and what to fix first.
+                </h1>
+
+                <p className="font-sans text-sm sm:text-base md:text-lg text-[#C6BAAC] font-light leading-relaxed max-w-2xl">
+                  Answer 6 questions. Get a personalized high-ticket readiness report — instantly.
+                </p>
+
+                <div className="pt-4">
+                  <button
+                    onClick={onStart}
+                    className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
+                  >
+                    START THE ASSESSMENT &rarr;
+                  </button>
+                </div>
+
+              </div>
+
+              {/* Right Column - Diagnosis Preview (only visible on desktop on white space) */}
+              <div className="hidden lg:flex col-span-5 flex-col items-center text-center justify-center pl-8">
+                <div className="max-w-[340px] flex flex-col items-center justify-center text-center space-y-3.5 px-4">
+                  <div className="inline-block font-sans text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2.5 py-0.5 bg-[#EC5FB4]/5">
+                    Your Diagnosis Preview
+                  </div>
+                  <h3 className="font-serif font-bold text-[21px] leading-[1.3] text-dark-ink text-center">
+                    Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
+                  </h3>
+                </div>
+              </div>
+
             </div>
-
-            {/* Headline wrapped in black background highlight */}
-            <div className="bg-black px-4 py-2 rounded-lg">
-              <h1 className="font-serif font-medium text-[44px] md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-tight max-w-3xl mx-auto">
-                Find out exactly where you <span className="font-serif italic font-normal text-[#EC5FB4]">are</span> — and what to fix first.
-              </h1>
-            </div>
-
-            <p className="font-sans text-sm sm:text-base md:text-lg text-[#C6BAAC] font-light leading-relaxed max-w-2xl mx-auto">
-              Answer 6 questions. Get a personalized high-ticket readiness report — instantly.
-            </p>
-
-            <div className="pt-6">
-              <button
-                onClick={onStart}
-                className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
-              >
-                START THE ASSESSMENT &rarr;
-              </button>
-            </div>
-
           </div>
         </header>
 
