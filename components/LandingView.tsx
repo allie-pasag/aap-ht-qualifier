@@ -309,7 +309,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
               For coaches &amp; course creators
             </span>
             <span className="hidden md:inline-block w-1 h-1 rounded-full bg-luxe-cream/30"></span>
-            <span className="font-sans text-[15.5px] text-black md:text-white font-semibold md:font-light">
+            <span className="font-sans text-[15.5px] text-white font-semibold md:font-light">
               You’ve got the audience and the authority — now make the offer prove it.
             </span>
           </div>
