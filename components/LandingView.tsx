@@ -488,13 +488,13 @@ export default function LandingView({ onStart }: LandingViewProps) {
                   Meet Allie Pasag
                 </div>
                 <blockquote className="font-serif font-medium text-3xl md:text-4xl lg:text-[44px] leading-[1.14] tracking-tight text-dark-ink max-w-[20ch] m-0 mb-4.5">
-                  “Stop guessing what niche or funnel will <span className="font-serif italic text-[#EC5FB4]">save you.</span>”
+                  “Your superpower isn't too complex. <span className="font-serif italic text-[#EC5FB4]">Your offer is.</span>”
                 </blockquote>
                 <p className="font-sans text-lg md:text-[20px] leading-relaxed text-dark-ink font-semibold mb-5 max-w-[56ch]">
-                  Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
+                  Stop struggling to explain what makes you different. Together, we’ll extract your unique superpowers, strip away the marketing clutter, and translate your genius into a crystal-clear offer that premium clients grasp instantly.
                 </p>
                 <p className="font-sans text-base md:text-[16.5px] leading-relaxed text-dark-body font-light mb-4.5 max-w-[56ch]">
-                  Most offers stall because they were never actually diagnosed or positioned. This assessment is the exact framework I use on consultation calls — it separates the marketing noise from your real bottleneck.
+                  An elite-level offer doesn’t need massive funnels or endless chasing — it sells itself simply because the value is undeniable. This diagnostic is the exact initial lens I use on my advisory calls to pinpoint where your current positioning is holding you back, and how to fix it immediately.
                 </p>
                  <div className="mt-8">
                   <div className="inline-flex flex-col items-center">
