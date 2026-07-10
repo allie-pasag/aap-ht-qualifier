@@ -320,12 +320,12 @@ export default function LandingView({ onStart }: LandingViewProps) {
           {/* Background Image for desktop */}
           <div className="absolute inset-0 w-full h-full hidden lg:block">
             <img 
-              src="/hero-allie.png" 
+              src="/allie-hero-bg.png" 
               className="w-full h-full object-cover object-center" 
               alt="Allie Hero Background" 
             />
-            {/* Dark gradient on the left side to ensure text readability */}
-            <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-black via-black/85 to-transparent pointer-events-none"></div>
+            {/* Subtle dark gradient overlay on the left to ensure maximum readability of white text */}
+            <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-black/70 via-black/30 to-transparent pointer-events-none"></div>
           </div>
 
           <div className="relative z-10 max-w-[1140px] mx-auto px-6 md:px-10 w-full py-16 lg:py-24">
