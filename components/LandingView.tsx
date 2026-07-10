@@ -435,30 +435,30 @@ export default function LandingView({ onStart }: LandingViewProps) {
             <div className="how-col pr-0 md:pr-[34px] py-4 md:py-0">
               <div className="font-serif italic text-[40px] text-rose-glow leading-none">01</div>
               <div className="font-sans font-semibold text-lg md:text-xl text-luxe-white mt-4">
-                Answer 6 questions
+                Answer 8 quick questions
               </div>
               <p className="font-sans text-sm md:text-[14.5px] leading-relaxed text-taupe font-light mt-2">
-                Honest, plain-language questions about where your offer really stands. No forms, no fluff.
+                An honest, 3-minute diagnostic about your offer, your audience, and your systems. No fluff, no complicated fields.
               </p>
             </div>
 
             <div className="how-col px-0 md:px-[34px] py-4 md:py-0 border-t md:border-t-0 md:border-l border-luxe-cream/10">
               <div className="font-serif italic text-[40px] text-rose-glow leading-none">02</div>
               <div className="font-sans font-semibold text-lg md:text-xl text-luxe-white mt-4">
-                Get matched to your type
+                Get scored instantly
               </div>
               <p className="font-sans text-sm md:text-[14.5px] leading-relaxed text-taupe font-light mt-2">
-                We name which of the 5 Client Types you are and score your high-ticket readiness.
+                Our algorithm matches you with 1 of the 5 Client Types, scores your conversion readiness, and anchors your high-ticket pricing potential.
               </p>
             </div>
 
             <div className="how-col pl-0 md:pl-[34px] py-4 md:py-0 border-t md:border-t-0 md:border-l border-luxe-cream/10">
               <div className="font-serif italic text-[40px] text-rose-glow leading-none">03</div>
               <div className="font-sans font-semibold text-lg md:text-xl text-luxe-white mt-4">
-                See what to fix first
+                Receive your custom blueprint
               </div>
               <p className="font-sans text-sm md:text-[14.5px] leading-relaxed text-taupe font-light mt-2">
-                The exact moves for your situation — and where a call fits in.
+                Unlock an immediate online action plan of what to fix first, with a pristine HTML copy of your blueprint sent straight to your inbox.
               </p>
             </div>
 
