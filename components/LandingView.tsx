@@ -319,7 +319,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
         <header className="hero relative w-screen left-1/2 ml-[-50vw] bg-black py-16 sm:py-24 md:py-32 flex items-center justify-center border-b border-white/5">
           <div className="max-w-[1140px] mx-auto px-6 md:px-10 w-full flex flex-col items-center justify-center text-center space-y-6">
             
-            <span className="font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold block">
+            <span className="hidden md:block font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold">
               Allie Pasag Hero Landscape
             </span>
 
