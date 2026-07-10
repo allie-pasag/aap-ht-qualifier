@@ -537,7 +537,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 Diagnostic clarity
               </h3>
               <p className="font-sans text-[15px] leading-relaxed text-taupe font-light mt-3 transition-colors duration-300 group-hover:text-[#C9BEB0]">
-                Know exactly which of the 5 Client Types you are — and what's actually slowing your sales down.
+                See exactly where your offer is stalling — whether it's decision hesitation, unstructured delivery, or silent conversion leaks.
               </p>
             </div>
 
@@ -549,10 +549,10 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 </svg>
               </div>
               <h3 className="font-serif font-medium text-2xl lg:text-[27px] leading-tight text-white transition-colors duration-300">
-                Personalized read
+                Actionable next steps
               </h3>
               <p className="font-sans text-[15px] leading-relaxed text-[#C9BEB0] font-light mt-3 transition-colors duration-300 group-hover:text-white">
-                No templated results. Get a situation summary and direct, honest feedback written on Allie's strategy rules.
+                Get a custom roadmap of what to build or optimize next. No generic checklists — only targeted, sequence-based directives.
               </p>
             </div>
 
@@ -567,7 +567,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 Pre-framed pricing
               </h3>
               <p className="font-sans text-[15px] leading-relaxed text-taupe font-light mt-3 transition-colors duration-300 group-hover:text-[#C9BEB0]">
-                See a clear starting price anchor matched to your situation before booking — zero financial surprises.
+                See a realistic starting investment threshold tailored to your offer scale and system requirements before booking.
               </p>
             </div>
 
