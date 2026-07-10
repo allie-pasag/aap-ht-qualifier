@@ -352,7 +352,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
 
         {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (Mobile Background Image Layout) ===== */}
         <section className="lg:hidden relative w-screen left-1/2 ml-[-50vw] border-b border-black/10 overflow-hidden z-20">
-          {/* Background Image of the Woman & White rounded box */}
+          {/* Background Image */}
           <div className="absolute inset-0 w-full h-full">
             <img 
               src="/allie-mobile-bg.png" 
@@ -360,22 +360,25 @@ export default function LandingView({ onStart }: LandingViewProps) {
               alt="Allie Mobile Background" 
             />
           </div>
-
-          {/* Overlay Text Container pushed to the right side (where the white space is) */}
+          {/* Overlay Text Container */}
           <div className="relative z-10 w-full flex justify-end py-7 pr-5 pl-1 min-h-[220px] sm:min-h-[280px]">
             <div className="w-[62%] flex flex-col justify-center space-y-1.5 sm:space-y-3 pl-1">
               <div className="inline-block font-sans text-[7.5px] sm:text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 py-0.5 w-fit bg-[#EC5FB4]/5">
                 Your Diagnosis Preview
               </div>
-              <h3 className="font-serif font-bold text-[13px] sm:text-[16.5px] md:text-xl leading-[1.25] text-dark-ink">
+              <h3 className="font-serif font-bold text-[16px] sm:text-[20px] md:text-2xl leading-[1.25] text-dark-ink">
                 Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
               </h3>
               <div className="h-[1px] bg-black/10 w-full"></div>
-              <p className="font-sans text-[11px] sm:text-[14px] md:text-[15.5px] leading-relaxed text-dark-body font-medium">
-                Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
-              </p>
             </div>
           </div>
+        </section>
+
+        {/* ===== CLEAR BEATS CLEVER (Separate Section Below) ===== */}
+        <section className="lg:hidden relative w-screen left-1/2 ml-[-50vw] bg-white border-b border-black/10 z-20 px-6 py-8">
+          <p className="font-sans text-[13px] sm:text-[15px] leading-relaxed text-dark-body font-medium">
+            Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
+          </p>
         </section>
 
         {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (Desktop Layout) ===== */}
