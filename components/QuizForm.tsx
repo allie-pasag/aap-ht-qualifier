@@ -1,7 +1,55 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QuizAnswers } from '../lib/quizLogic';
+
+const COMPANION_DATA: Record<StepId, { text: string; avatar: string; delay: number }> = {
+  identity: {
+    text: "Before we write a single line of code, we must understand the vision of the leader driving it. Introducing yourself below allows us to customize every single architectural recommendation specifically for your brand, target audience, and current scale.",
+    avatar: "/allie_cartoon.png",
+    delay: 500
+  },
+  situation: {
+    text: "Establishing your starting point is critical because your client acquisition engine must fit your business model. If we are choosing a direction, we focus on validation; if we are packaging your skills, we focus on authority; and if we are scaling, we focus on automation.",
+    avatar: "/allie_cartoon_thinking.png",
+    delay: 500
+  },
+  most_money: {
+    text: "It's easy to get overwhelmed when you have multiple talents. We want to identify where the market has already given you commercial validation—doubling down on what has already made money is the fastest, lowest-risk way to scale.",
+    avatar: "/allie_cartoon_calculating.png",
+    delay: 500
+  },
+  solved_for_someone: {
+    text: "You don't need a massive team or a hundred case studies to command premium prices. Knowing if you've delivered results for at least one person tells us if we need to run a high-ticket pilot program first, or if you're ready for an automated high-ticket funnel.",
+    avatar: "/allie_cartoon_answer.png",
+    delay: 500
+  },
+  converting: {
+    text: "Sporadic sales are often built on manual hustle, which isn't scalable. Knowing how your sales convert today tells us whether we should build automated conversion assets to free up your calendar, or if we need to optimize your underlying sales messaging.",
+    avatar: "/allie_cartoon_calculating.png",
+    delay: 500
+  },
+  infrastructure: {
+    text: "We need to look at your existing digital 'engine room'. Knowing if you have functional assets live right now helps us determine if we can salvage and optimize your current pages, or if we should set up a completely fresh, high-ticket system from scratch.",
+    avatar: "/allie_cartoon_answer.png",
+    delay: 500
+  },
+  new_or_improve: {
+    text: "Since your current system is already generating results, we treat it with absolute care. We need to decide if we should audit and optimize your active setup to plug any conversion leaks, or construct a parallel high-ticket acquisition channel.",
+    avatar: "/allie_cartoon_excited.png",
+    delay: 500
+  },
+  drill_down: {
+    text: "Tearing down working tech is a waste of time and money. By letting us know what tech you already use, we can map out a seamless system integration that leverages your existing tools and minimizes manual administrative tasks.",
+    avatar: "/allie_cartoon_thinking.png",
+    delay: 500
+  },
+  urgency: {
+    text: "Your launch timeline dictates our entire engineering sequence. A tight window means we prioritize building and deploying your high-ticket validation core first, while a wider timeline allows us to construct a fully optimized, comprehensive acquisition system.",
+    avatar: "/allie_cartoon_timeline.png",
+    delay: 500
+  }
+};
 
 interface QuizFormProps {
   answers: QuizAnswers;
@@ -17,6 +65,41 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
   const [currentStep, setCurrentStep] = useState<StepId>('identity');
   const [stepHistory, setStepHistory] = useState<StepId[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Floating companion states
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [typedText, setSpeechText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
+  useEffect(() => {
+    if (isMinimized) return;
+
+    setSpeechText("");
+    setIsTyping(true);
+
+    const stepData = COMPANION_DATA[currentStep];
+    if (!stepData) return;
+
+    let index = 0;
+    const fullText = stepData.text;
+    
+    const startDelay = setTimeout(() => {
+      const interval = setInterval(() => {
+        setSpeechText((prev) => prev + fullText.charAt(index));
+        index++;
+        if (index >= fullText.length) {
+          clearInterval(interval);
+          setIsTyping(false);
+        }
+      }, 20);
+
+      return () => clearInterval(interval);
+    }, stepData.delay);
+
+    return () => {
+      clearTimeout(startDelay);
+    };
+  }, [currentStep, isMinimized]);
 
   // Helper to update answers
   const updateAnswer = (key: keyof QuizAnswers, value: any) => {
@@ -146,6 +229,42 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
     }
   };
 
+  // Reusable unified navigation row positioned tightly below options/inputs
+  const renderNavigation = () => {
+    if (currentStep === 'identity') return null;
+
+    const isNextDisabled = !hasAnswerSelected();
+
+    return (
+      <div className="flex items-center space-x-4 mt-6 pt-4 border-t border-[#222222]/20 w-full animate-fadeIn">
+        {/* Back Button */}
+        <button
+          type="button"
+          onClick={handleBack}
+          className="px-5 py-2.5 bg-transparent text-[#888888] hover:text-white font-medium text-xs rounded border border-[#222222] hover:border-[#444444] transition-all duration-300 flex items-center space-x-1"
+        >
+          <span>← Back</span>
+        </button>
+
+        {/* Continue Button */}
+        {currentStep !== 'urgency' && (
+          <button
+            type="button"
+            disabled={isNextDisabled}
+            onClick={handleNext}
+            className={`px-8 py-2.5 font-semibold text-xs rounded border transition-all duration-300 flex items-center space-x-1.5 ${
+              isNextDisabled
+                ? 'bg-[#161616] text-[#444444] border-[#222222] cursor-not-allowed'
+                : 'bg-[#E040FB] text-black border-[#E040FB] hover:shadow-[0_0_15px_rgba(224,64,251,0.3)]'
+            }`}
+          >
+            <span>Continue →</span>
+          </button>
+        )}
+      </div>
+    );
+  };
+
   // Step 1: Validation and submission
   const handleIdentitySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -257,18 +376,125 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
   };
 
   return (
-    <div className="flex-grow w-full max-w-2xl mx-auto px-6 py-8 md:py-16 flex flex-col justify-center min-h-[80vh] font-sans">
+    <div className="flex-grow w-full max-w-[1300px] mx-auto px-4 md:px-12 py-6 md:py-12 grid grid-cols-1 md:grid-cols-12 md:gap-8 lg:gap-16 items-center h-auto md:min-h-screen font-sans relative">
+      {/* CSS Keyframes for slide-up, fade-in, and sleeping animations */}
+      <style>{`
+        @keyframes slideUpHalfBody {
+          0% {
+            transform: translateY(150px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+        @keyframes fadeInBubble {
+          0% {
+            transform: translateY(15px) scale(0.95);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+          }
+        }
+        @keyframes sleepFloating {
+          0% {
+            transform: translate(0, 0) scale(0.6);
+            opacity: 0;
+          }
+          30% {
+            opacity: 0.8;
+          }
+          100% {
+            transform: translate(-15px, -50px) scale(1.1);
+            opacity: 0;
+          }
+        }
+        @keyframes sleepBreathing {
+          0%, 100% {
+            transform: translateY(32px) rotate(-12deg) scaleY(0.96);
+          }
+          50% {
+            transform: translateY(32px) rotate(-12deg) scaleY(1.02);
+          }
+        }
+        @keyframes sleepBreathingMob {
+          0%, 100% {
+            transform: translateY(18px) rotate(-12deg) scaleY(0.96);
+          }
+          50% {
+            transform: translateY(18px) rotate(-12deg) scaleY(1.02);
+          }
+        }
+        .animate-slide-up-half {
+          animation: slideUpHalfBody 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in-bubble {
+          animation: fadeInBubble 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+          opacity: 0;
+        }
+        .animate-sleep-float-1 {
+          animation: sleepFloating 3.5s ease-in-out infinite;
+        }
+        .animate-sleep-float-2 {
+          animation: sleepFloating 3.5s ease-in-out 1.1s infinite;
+        }
+        .animate-sleep-float-3 {
+          animation: sleepFloating 3.5s ease-in-out 2.2s infinite;
+        }
+        .animate-sleep-breath {
+          animation: sleepBreathing 4.5s ease-in-out infinite;
+          transform-origin: bottom center;
+        }
+        .animate-sleep-breath-mob {
+          animation: sleepBreathingMob 4.5s ease-in-out infinite;
+          transform-origin: bottom center;
+        }
+      `}</style>
+
+      {/* Left Column: Form Content - centered between sidebar and dialogue boundary */}
+      <div className={`col-span-1 ${isMinimized ? 'md:col-span-12' : 'col-span-12 xl:col-span-8'} w-full max-w-xl mx-auto flex flex-col justify-center space-y-6 transition-all duration-500`}>
+        
+        {/* Mobile & Tablet Inline Guidance Box (Hidden on Large Desktop >= 1150px) */}
+        {!isMinimized && COMPANION_DATA[currentStep] && (
+          <div className="mobile-tablet-only-flex items-start space-x-3.5 bg-white/[0.03] border border-white/[0.08] backdrop-blur-md rounded-2xl p-4 mb-2 animate-fadeIn relative">
+            {/* Close Button to minimize/sleep */}
+            <button 
+              type="button"
+              onClick={() => setIsMinimized(true)}
+              className="absolute top-2.5 right-2.5 text-[9px] text-white/40 hover:text-white/80 transition-colors w-4.5 h-4.5 flex items-center justify-center rounded-full bg-white/5 border border-white/5"
+              title="Minimize Allie to Sleep"
+            >
+              ✕
+            </button>
+            <div className="relative w-11 h-11 flex-shrink-0 rounded-full bg-gradient-to-tr from-[#161616] to-[#25102a] border border-[#E040FB]/20 flex items-center justify-center overflow-hidden animate-pulse">
+              <img 
+                src={`${COMPANION_DATA[currentStep]?.avatar || "/allie_cartoon.png"}?v=11`} 
+                alt="Allie Guidance" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex-grow pr-4">
+              <span className="text-[10px] uppercase tracking-wider text-[#EC5FB4] font-bold block mb-1">
+                Allie's Guidance
+              </span>
+              <p className="font-sans text-[13px] leading-relaxed text-[#C6BAAC] font-light">
+                {COMPANION_DATA[currentStep]?.text}
+              </p>
+            </div>
+          </div>
+        )}
+
       {/* Render Steps */}
       {currentStep === 'identity' && (
         <form onSubmit={handleIdentitySubmit} className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 1
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               Before we build, let&rsquo;s align.
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               Every world-class technical system starts with the context of the person behind it. Introduce yourself below so we can tailor this high-ticket diagnosis exactly to your name, expertise, and goals.
             </p>
           </div>
@@ -334,13 +560,10 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
       {currentStep === 'situation' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 2
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               What is the current state of your offer?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               An incredible system is useless if it&rsquo;s mapped to the wrong strategy. Let&rsquo;s establish your exact starting point so we know whether we are choosing a direction, packaging an active skill, or scaling what already works.
             </p>
           </div>
@@ -369,23 +592,21 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
                 className="w-full text-left bg-[#161616] border border-[#222222] hover:border-[#E040FB]/40 hover:bg-gradient-to-r hover:from-transparent hover:to-[#E040FB]/[0.01] p-5 rounded-md transition-all duration-300 focus:outline-none focus:border-[#E040FB]/60 flex flex-col space-y-1.5"
               >
                 <span className="text-sm font-medium text-white">{option.title}</span>
-                <span className="text-xs text-[#888888] font-light">{option.desc}</span>
+                <span className="text-[13px] text-[#A2968A] font-light">{option.desc}</span>
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'most_money' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 2A
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               Let&rsquo;s follow the evidence of your traction.
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               When you have multiple talents, second-guessing is the ultimate progress killer. We want to identify where the market has already shown you a clear green light, even if it was just once, to narrow down your focus.
             </p>
           </div>
@@ -407,19 +628,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'solved_for_someone' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 2B
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               Has this expertise been proven in the real world?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               High-ticket validation doesn&rsquo;t require a massive client roster—it just requires proof of concept. Let us know if you have successfully delivered results for someone else, whether as a paid engagement or a free pilot.
             </p>
           </div>
@@ -440,19 +659,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'converting' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 3
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               Is your conversion funnel predictable?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               Making sporadic sales is common, but scaling a premium brand requires predictability. Let&rsquo;s evaluate whether your offer currently converts on-demand, or if it still relies on manual hustle and inconsistent launch cycles.
             </p>
           </div>
@@ -473,19 +690,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'infrastructure' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 4
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               What is the status of your conversion assets?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               We need to check the active structural layers of your digital home. Tell us if you have a fully live, customer-facing system running right now, or if we are working with a clean, distraction-free slate.
             </p>
           </div>
@@ -506,19 +721,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'new_or_improve' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 4A
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               What is the primary goal of this evolution?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               Since your current engine is functional, we want to treat your setup with extreme precision. Tell us if we are building a brand-new high-ticket channel from scratch, or auditing and fine-tuning your existing layers for peak capacity.
             </p>
           </div>
@@ -538,19 +751,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'drill_down' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 5
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               What assets do we have to work with?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               We don&rsquo;t believe in tearing down active machinery if it can be leveraged. Select all the active tech, content, and pipeline elements you currently have set up so we can map out your exact system integration.
             </p>
           </div>
@@ -595,19 +806,17 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
           </div>
 
           {errors.what_they_have && <span className="text-[10px] text-red-500 block">{errors.what_they_have}</span>}
+          {renderNavigation()}
         </div>
       )}
 
       {currentStep === 'urgency' && (
         <div className="space-y-6 animate-fadeIn">
           <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.15em] text-[#E040FB] font-semibold">
-              Step 6
-            </span>
             <h2 className="font-serif text-2xl md:text-3xl font-medium text-white leading-tight">
               What is your ideal window for deployment?
             </h2>
-            <p className="text-xs text-[#888888] font-light leading-relaxed">
+            <p className="text-base md:text-[16.5px] text-[#A2968A] font-light leading-relaxed">
               Timing dictates our technical sequence and development velocity. Tell us your target launch horizon so we can structure a realistic, high-fidelity roadmap that aligns with your calendar.
             </p>
           </div>
@@ -628,35 +837,103 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
               </button>
             ))}
           </div>
+          {renderNavigation()}
         </div>
       )}
 
-      {/* Modern Unified Bottom Navigation Footer */}
-      <div className="flex justify-between items-center mt-12 pt-6 border-t border-[#222222]/40 w-full">
-        {/* Back Button */}
-        {currentStep !== 'identity' ? (
-          <button
-            onClick={handleBack}
-            className="flex items-center space-x-1.5 text-xs text-[#888888] hover:text-white transition-colors group px-4 py-2 border border-[#222] hover:border-[#444] rounded bg-[#111]/40"
-          >
-            <span className="inline-block transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
-            <span>Back</span>
-          </button>
-        ) : (
-          <div /> // empty placeholder to align Next button to the right
-        )}
-
-        {/* Next Button */}
-        {currentStep !== 'urgency' && currentStep !== 'identity' && hasAnswerSelected() && (
-          <button
-            onClick={handleNext}
-            className="flex items-center space-x-1.5 text-xs text-white hover:text-white bg-[#E040FB]/10 hover:bg-[#E040FB]/20 border border-[#E040FB]/30 hover:border-[#E040FB]/60 px-4 py-2 rounded transition-all duration-300 group shadow-[0_0_15px_rgba(224,64,251,0.05)]"
-          >
-            <span>Next</span>
-            <span className="inline-block transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-          </button>
-        )}
-      </div>
     </div>
-  );
+
+    {/* Right Column: Large Half-Body Cartoon & Speech Bubble */}
+    <div className={`col-span-1 xl:col-span-4 ${isMinimized ? 'hidden' : 'xl-only-flex'} flex-col items-center justify-start sticky top-12 h-auto pt-4`}>
+      {/* Large Speech / Dialogue Bubble (unless minimized!) */}
+      {!isMinimized && (
+        <>
+          <div key={`bubble-${currentStep}`} className="bg-transparent border-0 p-0 w-full max-w-[380px] relative mb-6 animate-fade-in-bubble select-none">
+            {/* Minimize/Close Button */}
+            <button 
+              type="button"
+              onClick={() => setIsMinimized(true)}
+              className="absolute top-0 right-0 text-[10px] text-white/40 hover:text-white/80 transition-colors w-5 h-5 flex items-center justify-center rounded-full bg-white/5 border border-white/5"
+              title="Minimize Allie to Sleep"
+            >
+              ✕
+            </button>
+            {/* Speaker Tag */}
+            <span className="text-[10px] uppercase tracking-wider text-[#E040FB] font-bold block mb-2">
+              Allie's Guidance
+            </span>
+            {/* Conversational Text */}
+            <p className="font-sans text-base md:text-[16.5px] leading-relaxed text-[#C6BAAC] font-light">
+              {COMPANION_DATA[currentStep]?.text}
+            </p>
+          </div>
+
+          {/* Allie Character Image - styled exactly with your custom CSS parameters */}
+          <div 
+            onClick={() => setIsMinimized(true)}
+            title="Click to sleep"
+            key={`character-${currentStep}`} 
+            className="avatar-container animate-slide-up-half cursor-pointer mt-4"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src={`${COMPANION_DATA[currentStep]?.avatar || "/allie_cartoon.png"}?v=11`} 
+              alt="Allie Cartoon Character" 
+              className="relative z-10"
+            />
+          </div>
+        </>
+      )}
+    </div>
+
+    {/* Desktop Minimized Sleeping Character fixed on the bottom-right of the viewport! */}
+    {isMinimized && (
+      <div 
+        onClick={() => setIsMinimized(false)}
+        className="xl-only-flex pointer-events-auto cursor-pointer fixed bottom-6 right-12 z-50 w-28 h-28 items-end justify-center select-none group"
+        title="Click Allie to wake her up!"
+      >
+        {/* Floating Sleep Letters */}
+        <div className="absolute top-0 left-6 pointer-events-none select-none text-[#E040FB]/80 font-serif font-semibold">
+          <span className="absolute animate-sleep-float-1 text-sm">Z</span>
+          <span className="absolute animate-sleep-float-2 text-xs left-3 -top-2">z</span>
+          <span className="absolute animate-sleep-float-3 text-[10px] left-6 top-1">z</span>
+          <span className="absolute animate-sleep-float-1 text-[8px] left-9 -top-1" style={{ animationDelay: '1.5s' }}>z</span>
+        </div>
+
+        {/* Sleeping Cartoon character resting half-submerged with breathing animation */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img 
+          src="/allie_cartoon_thinking.png?v=11" 
+          alt="Sleeping Allie" 
+          className="w-full h-full object-contain animate-sleep-breath filter brightness-75 contrast-90"
+        />
+      </div>
+    )}
+
+    {/* Mobile/Tablet Minimized Sleeping Character resting on the bottom edge of mobile/tablet screen */}
+    {isMinimized && (
+      <div 
+        onClick={() => setIsMinimized(false)}
+        className="mobile-tablet-only-flex pointer-events-auto cursor-pointer fixed bottom-4 right-4 z-40 w-16 h-16 items-end justify-center select-none group"
+        title="Wake Allie!"
+      >
+        {/* Floating Sleep Letters */}
+        <div className="absolute top-[-20px] left-2 pointer-events-none select-none text-[#E040FB]/80 font-serif font-semibold">
+          <span className="absolute animate-sleep-float-1 text-xs">Z</span>
+          <span className="absolute animate-sleep-float-2 text-[9px] left-2 -top-1">z</span>
+          <span className="absolute animate-sleep-float-3 text-[8px] left-4 top-1">z</span>
+        </div>
+
+        {/* Sleeping avatar breathing */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img 
+          src="/allie_cartoon_thinking.png?v=11" 
+          alt="Sleeping Allie Mobile" 
+          className="w-full h-full object-contain animate-sleep-breath-mob filter brightness-75 contrast-90"
+        />
+      </div>
+    )}
+  </div>
+);
 }

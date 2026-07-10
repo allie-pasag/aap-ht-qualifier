@@ -1,45 +1,183 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0D0D0D;
-  --foreground: #FFFFFF;
-  --sidebar-bg: #111111;
-  --accent: #E040FB;
-  --text-secondary: #888888;
-  --text-muted: #444444;
-  --card-bg: #161616;
-  --card-border: #222222;
+  --background: #15110E;
+  --foreground: #EFE7DB;
+  --onyx: #15110E;
+  --espresso: #1E1813;
+  --rose-glow: #EC5FB4;
+  --luxe-cream: #EFE7DB;
+  --luxe-white: #F6F0E8;
+  --taupe: #A2968A;
+  --ash: #6E6459;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-sidebar: var(--sidebar-bg);
-  --color-accent: var(--accent);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-card-bg: var(--card-bg);
-  --color-card-border: var(--card-border);
-  --font-sans: var(--font-inter), sans-serif;
-  --font-serif: var(--font-playfair), serif;
+  --color-onyx: #15110E;
+  --color-espresso: #1E1813;
+  --color-umber: #3A322A;
+  --color-rose-glow: #EC5FB4;
+  --color-luxe-cream: #EFE7DB;
+  --color-luxe-white: #F6F0E8;
+  --color-taupe: #A2968A;
+  --color-ash: #6E6459;
+  --color-dark-ink: #1A140F;
+  --color-dark-body: #5C5249;
+  --font-serif: var(--font-cormorant), serif;
+  --font-sans: var(--font-hanken), sans-serif;
+  --font-script: var(--font-qwitcher), cursive;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--onyx);
+  color: var(--luxe-cream);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-@utility premium-grid-bg {
-  background-color: #0A0A0C;
-  background-image: 
-    /* Rich, subtle pink linear grid lines (40px) */
-    linear-gradient(rgba(224, 64, 251, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(224, 64, 251, 0.035) 1px, transparent 1px),
-    /* Deep-violet & pink ambient mesh orbs */
-    radial-gradient(circle at 10% 20%, rgba(224, 64, 251, 0.09) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
-  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
+@keyframes floatSilk {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+  50% { transform: translate3d(0,-24px,0) rotate(3deg); }
+}
+
+@utility float-silk-1 {
+  animation: floatSilk 22s ease-in-out infinite;
+}
+
+@utility float-silk-2 {
+  animation: floatSilk 28s ease-in-out infinite reverse;
+}
+
+@utility float-silk-3 {
+  animation: floatSilk 34s ease-in-out infinite;
+}
+
+/* Custom selection styling */
+::selection {
+  background: rgba(236, 95, 180, 0.3);
+  color: #FFFFFF;
+}
+
+/* Custom size-locking and pixel-perfect crop alignment for Allie's sidebar photo and cartoon companion */
+.sidebar-portrait-container {
+  width: 14vw !important;
+  max-width: 232px !important; /* Perfectly caps container at sidebar's maximum available width (280px minus 48px padding) */
+  aspect-ratio: 2 / 3 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+.sidebar-portrait-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transform: scale(1.4) !important; /* Perfect crop zoom for photographic headshot */
+  transform-origin: 50% 25% !important;
+  transition: transform 0.5s ease !important;
+}
+
+.avatar-container {
+  width: 18vw !important;
+  max-width: 320px !important;
+  position: relative !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
+}
+
+.avatar-container img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  transform: scale(1.1) !important; /* Gentle scale to match photograph height visually without cropping */
+  transform-origin: bottom center !important;
+  transition: transform 0.3s ease !important;
+}
+
+.avatar-container img:hover {
+  transform: scale(1.15) !important;
+}
+
+/* Custom Keyframes and Utilities for Premium Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@utility animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@utility animate-scaleIn {
+  animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-slideUp {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Symmetrical bulletproof responsive layouts to prevent display specificity clashes in Tailwind v4 */
+@media (max-width: 767.98px) {
+  .mobile-only-flex {
+    display: flex !important;
+  }
+  .mobile-only-block {
+    display: block !important;
+  }
+  .desktop-only-flex {
+    display: none !important;
+  }
+  .desktop-only-block {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-only-flex {
+    display: none !important;
+  }
+  .mobile-only-block {
+    display: none !important;
+  }
+  .desktop-only-flex {
+    display: flex !important;
+  }
+  .desktop-only-block {
+    display: block !important;
+  }
+}
+
+@media (max-width: 1149.98px) {
+  .xl-only-flex {
+    display: none !important;
+  }
+  .mobile-tablet-only-flex {
+    display: flex !important;
+  }
+}
+
+@media (min-width: 1150px) {
+  .xl-only-flex {
+    display: flex !important;
+  }
+  .mobile-tablet-only-flex {
+    display: none !important;
+  }
 }
 

@@ -120,7 +120,7 @@ export default function Home() {
       <Sidebar currentStep={screen} activePhaseIndex={activePhaseIndex} />
 
       {/* Flexible Content Column */}
-      <div className="flex-grow md:ml-[280px] flex flex-col justify-center min-h-screen relative z-10 transition-all duration-300">
+      <div className="flex-grow md:ml-[280px] flex flex-col justify-center md:min-h-screen min-h-0 relative z-10 transition-all duration-300">
         {screen === 'quiz' && (
           <QuizForm
             answers={answers}

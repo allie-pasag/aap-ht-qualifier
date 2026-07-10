@@ -24,7 +24,7 @@ const loadingPools: LoadingStep[][] = [
     },
     {
       text: "Aha! I see some truly massive potential in this strategy plan.",
-      image: "/allie_cartoon_thinking.png",
+      image: "/allie_cartoon_answer.png",
       expression: "Lightbulb moment"
     },
     {
@@ -37,12 +37,12 @@ const loadingPools: LoadingStep[][] = [
   [
     {
       text: "Warming up my brainstorm engine... This is going to be exciting!",
-      image: "/allie_cartoon_thinking.png",
+      image: "/allie_cartoon.png",
       expression: "Brainstorming active"
     },
     {
       text: "Connecting the dots... I can already see your custom high-ticket plan taking shape!",
-      image: "/allie_cartoon_calculating.png",
+      image: "/allie_cartoon_answer.png",
       expression: "Drawing up the dots"
     },
     {
@@ -70,7 +70,7 @@ const loadingPools: LoadingStep[][] = [
     },
     {
       text: "Polishing up a bespoke, custom-tailored checklist just for you...",
-      image: "/allie_cartoon_thinking.png",
+      image: "/allie_cartoon_timeline.png",
       expression: "Polishing details"
     },
     {
@@ -154,7 +154,7 @@ export default function LoadingView() {
         <img
           src={currentStep.image}
           alt={`Allie Cartoon: ${currentStep.expression}`}
-          className="w-full h-full object-contain rounded-full border border-[#E040FB]/20 relative z-10 transition-all duration-300 transform scale-100 hover:scale-105"
+          className="w-full h-full object-contain relative z-10 transition-all duration-300 transform scale-100 hover:scale-105"
         />
 
         {/* Playful expression subtitle badge */}

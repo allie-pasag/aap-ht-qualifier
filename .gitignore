@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local design handoff files
+/design_handoff_landing
+/design_handoff_landing.zip
+

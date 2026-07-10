@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Hanken_Grotesk, Qwitcher_Grypen } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const qwitcher = Qwitcher_Grypen({
+  variable: "--font-qwitcher",
+  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -25,10 +34,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${hanken.variable} ${qwitcher.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <head>
+        <link rel="preconnect" href="https://bookme.name" />
+        <link rel="dns-prefetch" href="https://bookme.name" />
+      </head>
+      <body className="min-h-full flex flex-col font-sans text-[#EFE7DB] bg-[#15110E]">
+        {children}
+      </body>
     </html>
   );
 }
-

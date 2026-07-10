@@ -32,9 +32,9 @@ export default function ErrorView({ onReset, errorMessage }: ErrorViewProps) {
       {/* Moving Cartoon Container */}
       <div className="relative w-48 h-48 md:w-56 md:h-56 animate-allie-float animate-allie-glow">
         <img
-          src="/allie_cartoon.png"
+          src="/allie_witty_strategy.png"
           alt="Apologetic Allie Cartoon"
-          className="w-full h-full object-contain rounded-full border border-[#E040FB]/20"
+          className="w-full h-full object-contain"
         />
       </div>
 

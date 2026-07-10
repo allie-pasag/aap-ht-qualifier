@@ -25,23 +25,23 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
   const effectivePhaseIndex = (currentStep === 'results' || currentStep === 'loading') ? 6 : activePhaseIndex;
 
   return (
-    <aside className="w-full md:w-[280px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-6 flex flex-col justify-between z-30 transition-all duration-300">
+    <aside className="w-full md:w-[280px] md:fixed md:top-0 md:bottom-0 md:left-0 bg-[#111111] border-b md:border-b-0 md:border-r border-[#222222] p-4 md:p-6 flex flex-col md:justify-between z-30 transition-all duration-300 md:overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#E040FB]/30 animate-fade-in">
       {/* Top Branding & Headshot */}
-      <div className="flex flex-col items-center space-y-6 md:space-y-8 text-center">
+      <div className="flex flex-col items-center space-y-4 md:space-y-8 text-center w-full">
         {/* Wordmark */}
-        <div className="text-center w-full flex justify-center -my-10">
+        <div className="text-center w-full flex justify-center md:-my-10 -my-6">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/askalliepasag_logo.png"
             alt="ask Allie Pasag Logo"
-            className="w-full h-auto max-w-[190px] object-contain"
+            className="w-full h-auto max-w-[130px] md:max-w-[190px] object-contain"
           />
         </div>
 
-        {/* Headshot with zero border/circle, fading into page background */}
-        <div className="relative group flex flex-col items-center justify-center w-full">
+        {/* Headshot with zero border/circle, fading into page background (Desktop Only) */}
+        <div className="relative group desktop-only-flex flex-col items-center justify-center w-full">
           <div className="relative">
-            <div className="relative w-36 h-44 sm:w-40 sm:h-48 overflow-hidden bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-2xl transition-all duration-300">
+            <div className="sidebar-portrait-container bg-gradient-to-tr from-[#161616] to-[#25102a] flex items-center justify-center shadow-2xl transition-all duration-300">
               {imageError ? (
                 <span className="font-serif text-2xl font-bold text-[#E040FB]">AP</span>
               ) : (
@@ -50,7 +50,6 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
                   <img
                     src="/allie_portrait.jpg"
                     alt="Allie Pasag"
-                    className="w-full h-full object-cover scale-[1.4] origin-[50%_25%] transition-all duration-500"
                     onError={() => setImageError(true)}
                   />
                   {/* Custom Gradient Overlays to melt image into the background (#111111) */}
@@ -65,75 +64,115 @@ export default function Sidebar({ currentStep, activePhaseIndex }: SidebarProps)
           </div>
         </div>
 
-        {/* Tagline */}
-        <div className="text-center w-full">
-          <p className="text-xs text-[#888888] italic leading-relaxed max-w-[200px] mx-auto">
+        {/* Tagline (Desktop Only) */}
+        <div className="text-center w-full desktop-only-block">
+          <p className="text-[13.5px] md:text-[14.5px] text-[#A2968A] italic leading-relaxed max-w-[210px] mx-auto">
             &ldquo;This takes 3 minutes. What you get at the end is worth it.&rdquo;
           </p>
         </div>
       </div>
 
-      {/* Progress Dots */}
-      <div className="my-6 md:my-8 py-4 md:py-0 border-t border-b border-[#222222] md:border-0 flex md:flex-col items-center justify-center md:items-start md:justify-start space-x-4 md:space-x-0 md:space-y-4 overflow-x-auto md:overflow-x-visible no-scrollbar">
-        {phases.map((phase, idx) => {
-          const isComplete = idx < effectivePhaseIndex;
-          const isActive = idx === effectivePhaseIndex;
-          const isSuperpower = phase.name === 'Superpower Blueprint';
+      {/* Progress Dots Section */}
+      <div className="my-3 md:my-8 py-2 md:py-0 border-t border-b border-[#222222]/50 md:border-0 flex flex-col items-center md:items-start justify-center md:justify-start w-full md:max-w-[240px] mx-auto md:mx-0">
+        
+        {/* Horizontal dots on mobile, hidden on desktop */}
+        <div className="mobile-only-flex items-center justify-between w-full max-w-[280px] mb-2.5 relative px-2">
+          {/* Connector Line behind dots */}
+          <div className="absolute top-1/2 left-4 right-4 h-[1px] bg-[#222222] -translate-y-1/2 z-0"></div>
           
-          return (
-            <div key={phase.name} className="flex items-center space-x-3 group relative cursor-pointer flex-shrink-0">
-              {/* Dot Icon */}
-              <div className="relative flex items-center justify-center">
+          {phases.map((phase, idx) => {
+            const isComplete = idx < effectivePhaseIndex;
+            const isActive = idx === effectivePhaseIndex;
+            
+            return (
+              <div key={`dot-${phase.name}`} className="relative z-10 flex items-center justify-center bg-[#111111] px-1">
                 {isComplete ? (
                   /* Completed Dot */
-                  <div className="w-5 h-5 rounded-full bg-[#E040FB]/10 border border-[#E040FB] flex items-center justify-center text-[10px] text-[#E040FB] font-bold shadow-sm shadow-[#E040FB]/20 transition-all duration-300">
+                  <div className="w-4 h-4 rounded-full bg-[#E040FB]/10 border border-[#E040FB] flex items-center justify-center text-[8px] text-[#E040FB] font-bold shadow-sm shadow-[#E040FB]/20 transition-all duration-300">
                     ✓
                   </div>
                 ) : isActive ? (
                   /* Active Dot */
-                  <div className="relative w-5 h-5">
+                  <div className="relative w-4 h-4">
                     <div className="absolute inset-0 rounded-full bg-[#E040FB]/20 animate-ping"></div>
-                    <div className="relative w-5 h-5 rounded-full bg-[#E040FB] border border-[#E040FB] flex items-center justify-center shadow-md shadow-[#E040FB]/30">
-                      <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                    <div className="relative w-4 h-4 rounded-full bg-[#E040FB] border border-[#E040FB] flex items-center justify-center shadow-md shadow-[#E040FB]/30">
+                      <div className="w-1 h-1 rounded-full bg-white"></div>
                     </div>
                   </div>
                 ) : (
                   /* Remaining Dot */
-                  <div className="w-5 h-5 rounded-full bg-[#161616] border border-[#333] group-hover:border-[#555] transition-colors duration-300"></div>
+                  <div className="w-4 h-4 rounded-full bg-[#161616] border border-[#333]"></div>
                 )}
               </div>
+            );
+          })}
+        </div>
 
-              {/* Label (Visible on md+) */}
-              <div className="hidden md:flex flex-col text-left">
-                <span className={`text-[10px] uppercase tracking-[0.15em] font-medium leading-none ${
-                  isActive 
-                    ? isSuperpower 
-                      ? 'text-[#E040FB] font-bold shadow-sm' 
-                      : 'text-white font-semibold' 
-                    : isComplete 
-                      ? 'text-[#888888]' 
-                      : 'text-[#444444]'
-                }`}>
-                  {phase.name}
-                </span>
-                <span className={`text-[9px] font-light mt-0.5 max-w-[170px] ${
-                  isSuperpower ? 'text-[#888888]' : 'text-[#555]'
-                }`}>
-                  {phase.desc}
-                </span>
-              </div>
+        {/* Active step label and desc on mobile, hidden on desktop */}
+        <div className="mobile-only-flex flex-col items-center justify-center text-center w-full max-w-[280px] px-2 mt-2 pb-1 z-10">
+          <span className="text-[11.5px] uppercase tracking-[0.18em] font-bold text-[#EC5FB4] animate-fadeIn">
+            {phases[effectivePhaseIndex]?.name || 'Assessment'}
+          </span>
+          <span className="text-[10px] text-[#A2968A] font-medium mt-1 max-w-[250px] mx-auto leading-normal animate-fadeIn">
+            {phases[effectivePhaseIndex]?.desc || 'Answer the questions below'}
+          </span>
+        </div>
 
-              {/* Tooltip for mobile */}
-              <div className="absolute md:hidden -top-8 left-1/2 -translate-x-1/2 bg-[#161616] text-white text-[10px] py-1 px-2 rounded border border-[#222] opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-40">
-                {phase.name}: {phase.desc}
+        {/* Desktop Vertical Steps (hidden on mobile) */}
+        <div className="desktop-only-flex flex-col space-y-4.5 w-full">
+          {phases.map((phase, idx) => {
+            const isComplete = idx < effectivePhaseIndex;
+            const isActive = idx === effectivePhaseIndex;
+            const isSuperpower = phase.name === 'Superpower Blueprint';
+            
+            return (
+              <div key={phase.name} className="flex items-center space-x-3.5 group relative cursor-pointer flex-shrink-0 w-full">
+                {/* Dot Icon */}
+                <div className="relative flex items-center justify-center flex-shrink-0">
+                  {isComplete ? (
+                    <div className="w-5 h-5 rounded-full bg-[#E040FB]/10 border border-[#E040FB] flex items-center justify-center text-[10px] text-[#E040FB] font-bold shadow-sm shadow-[#E040FB]/20 transition-all duration-300">
+                      ✓
+                    </div>
+                  ) : isActive ? (
+                    <div className="relative w-5 h-5">
+                      <div className="absolute inset-0 rounded-full bg-[#E040FB]/20 animate-ping"></div>
+                      <div className="relative w-5 h-5 rounded-full bg-[#E040FB] border border-[#E040FB] flex items-center justify-center shadow-md shadow-[#E040FB]/30">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-5 h-5 rounded-full bg-[#161616] border border-[#333] group-hover:border-[#555] transition-colors duration-300"></div>
+                  )}
+                </div>
+
+                {/* Label */}
+                <div className="flex flex-col text-left">
+                  <span className={`text-[12px] md:text-[12.5px] uppercase tracking-[0.15em] font-semibold leading-none ${
+                    isActive 
+                      ? isSuperpower 
+                        ? 'text-[#E040FB] font-bold shadow-sm' 
+                        : 'text-white font-semibold' 
+                      : isComplete 
+                        ? 'text-[#888888]' 
+                        : 'text-[#444444]'
+                  }`}>
+                    {phase.name}
+                  </span>
+                  <span className={`text-[11px] md:text-[11.5px] font-light mt-1 max-w-[190px] ${
+                    isSuperpower ? 'text-[#888888]' : 'text-[#555]'
+                  }`}>
+                    {phase.desc}
+                  </span>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+
       </div>
 
-      {/* Bottom Branding info / footer */}
-      <div className="hidden md:block text-[9px] text-[#444444] font-light text-center w-full">
+      {/* Bottom Branding info / footer (Desktop Only) */}
+      <div className="desktop-only-block text-[9px] text-[#444444] font-light text-center w-full">
         <p>&copy; {new Date().getFullYear()} askalliepasag.</p>
         <p className="mt-0.5">All rights reserved.</p>
       </div>
