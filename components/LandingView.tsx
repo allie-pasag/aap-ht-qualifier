@@ -359,8 +359,8 @@ export default function LandingView({ onStart }: LandingViewProps) {
               alt="Allie Mobile Background" 
             />
           </div>
-          <div className="relative z-10 w-full flex justify-center items-end min-h-[280px] sm:min-h-[340px] pb-8 px-6">
-            <div className="w-full max-w-[280px] sm:max-w-[340px] bg-white/90 backdrop-blur-sm rounded-xl px-5 py-5 flex flex-col items-center text-center space-y-2">
+          <div className="relative z-10 w-full flex justify-end py-7 pr-4 pl-1 min-h-[220px] sm:min-h-[280px]">
+            <div className="w-[55%] flex flex-col items-center justify-center text-center space-y-2 sm:space-y-3 px-3">
               <div className="inline-block font-sans text-[7.5px] sm:text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 py-0.5 bg-[#EC5FB4]/5">
                 Your Diagnosis Preview
               </div>
