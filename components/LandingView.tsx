@@ -367,11 +367,11 @@ export default function LandingView({ onStart }: LandingViewProps) {
               <div className="inline-block font-sans text-[7.5px] sm:text-[9px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 py-0.5 w-fit bg-[#EC5FB4]/5">
                 Your Diagnosis Preview
               </div>
-              <h3 className="font-serif font-semibold text-[11.5px] sm:text-base md:text-xl leading-[1.2] text-dark-ink">
+              <h3 className="font-serif font-bold text-[13px] sm:text-[16.5px] md:text-xl leading-[1.25] text-dark-ink">
                 Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
               </h3>
               <div className="h-[1px] bg-black/10 w-full"></div>
-              <p className="font-sans text-[11.5px] sm:text-[14.5px] md:text-base leading-relaxed text-ash font-normal">
+              <p className="font-sans text-[11px] sm:text-[14px] md:text-[15.5px] leading-relaxed text-dark-body font-medium">
                 Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
               </p>
             </div>
