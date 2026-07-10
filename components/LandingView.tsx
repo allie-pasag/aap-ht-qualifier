@@ -329,7 +329,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
 
             {/* Headline wrapped in black background highlight */}
             <div className="bg-black px-4 py-2 rounded-lg">
-              <h1 className="font-serif font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-tight max-w-3xl mx-auto">
+              <h1 className="font-serif font-medium text-[44px] md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-tight max-w-3xl mx-auto">
                 Find out exactly where you <span className="font-serif italic font-normal text-[#EC5FB4]">are</span> — and what to fix first.
               </h1>
             </div>
@@ -341,9 +341,9 @@ export default function LandingView({ onStart }: LandingViewProps) {
             <div className="pt-6">
               <button
                 onClick={onStart}
-                className="hero-cta inline-block text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full tracking-wide shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer text-sm sm:text-base font-semibold px-8 py-4"
+                className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
               >
-                Start the assessment &rarr;
+                START THE ASSESSMENT &rarr;
               </button>
             </div>
 
@@ -464,13 +464,13 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 <p className="font-sans text-base md:text-[16.5px] leading-relaxed text-dark-body font-light mb-4.5 max-w-[56ch]">
                   Most offers stall because they were never actually diagnosed or positioned. This assessment is the exact framework I use on consultation calls — it separates the marketing noise from your real bottleneck.
                 </p>
-                <div className="mt-8">
+                 <div className="mt-8">
                   <div className="inline-flex flex-col items-center">
                     <button
                       onClick={onStart}
-                      className="inline-block font-sans text-sm md:text-[15px] font-semibold text-dark-ink bg-gradient-to-br from-[#FF92D5] via-rose-glow to-[#A82B67] rounded-full px-8 py-3.5 tracking-wide shadow-[0_12px_34px_rgba(236,95,180,0.26)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
+                      className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
                     >
-                      Put my offer under the microscope &rarr;
+                      PUT MY OFFER UNDER THE MICROSCOPE &rarr;
                     </button>
                     <div className="font-sans text-[13px] md:text-sm leading-relaxed text-[#8A7F73] italic mt-3 text-center">
                       It’s free, it’s fast, and Allie won’t sugarcoat it.
@@ -656,9 +656,9 @@ export default function LandingView({ onStart }: LandingViewProps) {
             <div className="text-center mt-[30px] relative z-20">
               <button
                 onClick={onStart}
-                className="inline-block font-sans text-sm md:text-base font-semibold text-dark-ink bg-gradient-to-br from-[#FF92D5] via-rose-glow to-[#A82B67] rounded-full px-10 py-4 tracking-wide shadow-[0_14px_40px_rgba(236,95,180,0.26)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
+                className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
               >
-                Find out what to fix first &rarr;
+                FIND OUT WHAT TO FIX FIRST &rarr;
               </button>
               <div className="font-sans text-[13px] md:text-sm leading-relaxed text-[#8A7F73] font-light mt-3 max-w-[46ch] mx-auto">
                 Or… stay right where you are and keep your audience guessing. Your call.
@@ -737,9 +737,9 @@ export default function LandingView({ onStart }: LandingViewProps) {
           <div className="mt-14 md:mt-16">
             <button
               onClick={onStart}
-              className="inline-block font-sans text-sm md:text-base font-semibold text-dark-ink bg-gradient-to-br from-[#FF92D5] via-rose-glow to-[#A82B67] rounded-full px-10 py-4.5 tracking-wide shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
+              className="inline-block font-sans text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full px-10 py-4.5 shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
             >
-              Get my readiness report &rarr;
+              GET MY READINESS REPORT &rarr;
             </button>
           </div>
         </section>
