@@ -455,37 +455,8 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
       `}</style>
 
       {/* Left Column: Form Content - centered between sidebar and dialogue boundary */}
-      <div className={`col-span-1 ${isMinimized ? 'md:col-span-12' : 'col-span-12 xl:col-span-8'} w-full max-w-xl mx-auto flex flex-col justify-center space-y-6 transition-all duration-500`}>
+      <div className={`col-span-12 ${isMinimized ? 'xl:col-span-12' : 'xl:col-span-8'} w-full max-w-xl mx-auto flex flex-col justify-center space-y-6 transition-all duration-500`}>
         
-        {/* Mobile & Tablet Inline Guidance Box (Hidden on Large Desktop >= 1150px) */}
-        {!isMinimized && COMPANION_DATA[currentStep] && (
-          <div className="mobile-tablet-only-flex items-start space-x-3.5 bg-white/[0.03] border border-white/[0.08] backdrop-blur-md rounded-2xl p-4 mb-2 animate-fadeIn relative">
-            {/* Close Button to minimize/sleep */}
-            <button 
-              type="button"
-              onClick={() => setIsMinimized(true)}
-              className="absolute top-2.5 right-2.5 text-[9px] text-white/40 hover:text-white/80 transition-colors w-4.5 h-4.5 flex items-center justify-center rounded-full bg-white/5 border border-white/5"
-              title="Minimize Allie to Sleep"
-            >
-              ✕
-            </button>
-            <div className="relative w-11 h-11 flex-shrink-0 rounded-full bg-gradient-to-tr from-[#161616] to-[#25102a] border border-[#E040FB]/20 flex items-center justify-center overflow-hidden animate-pulse">
-              <img 
-                src={`${COMPANION_DATA[currentStep]?.avatar || "/allie_cartoon.png"}?v=11`} 
-                alt="Allie Guidance" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="flex-grow pr-4">
-              <span className="text-[10px] uppercase tracking-wider text-[#EC5FB4] font-bold block mb-1">
-                Allie's Guidance
-              </span>
-              <p className="font-sans text-[13px] leading-relaxed text-[#C6BAAC] font-light">
-                {COMPANION_DATA[currentStep]?.text}
-              </p>
-            </div>
-          </div>
-        )}
 
       {/* Render Steps */}
       {currentStep === 'identity' && (
@@ -911,29 +882,7 @@ export default function QuizForm({ answers, setAnswers, onSubmit, onPhaseChange 
       </div>
     )}
 
-    {/* Mobile/Tablet Minimized Sleeping Character resting on the bottom edge of mobile/tablet screen */}
-    {isMinimized && (
-      <div 
-        onClick={() => setIsMinimized(false)}
-        className="mobile-tablet-only-flex pointer-events-auto cursor-pointer fixed bottom-4 right-4 z-40 w-16 h-16 items-end justify-center select-none group"
-        title="Wake Allie!"
-      >
-        {/* Floating Sleep Letters */}
-        <div className="absolute top-[-20px] left-2 pointer-events-none select-none text-[#E040FB]/80 font-serif font-semibold">
-          <span className="absolute animate-sleep-float-1 text-xs">Z</span>
-          <span className="absolute animate-sleep-float-2 text-[9px] left-2 -top-1">z</span>
-          <span className="absolute animate-sleep-float-3 text-[8px] left-4 top-1">z</span>
-        </div>
 
-        {/* Sleeping avatar breathing */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src="/allie_cartoon_thinking.png?v=11" 
-          alt="Sleeping Allie Mobile" 
-          className="w-full h-full object-contain animate-sleep-breath-mob filter brightness-75 contrast-90"
-        />
-      </div>
-    )}
   </div>
 );
 }
