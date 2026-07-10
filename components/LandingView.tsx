@@ -303,13 +303,13 @@ export default function LandingView({ onStart }: LandingViewProps) {
       <div className="relative z-20 max-w-[1140px] mx-auto px-6 md:px-10">
 
         {/* ===== TOP BANNER ===== */}
-        <div className="relative w-screen left-1/2 ml-[-50vw] bg-[#EC5FB4] md:bg-black border-b border-white/10 md:border-luxe-cream/10 transition-colors duration-300">
+        <div className="relative w-screen left-1/2 ml-[-50vw] bg-[#EC5FB4] border-b border-black/10 transition-colors duration-300">
           <div className="max-w-[1140px] mx-auto px-6 md:px-10 py-[18px] flex flex-wrap items-center justify-center gap-4 text-center">
-            <span className="font-sans text-[13px] tracking-[0.22em] uppercase text-black md:text-[#EC5FB4] font-bold">
+            <span className="font-sans text-[13px] tracking-[0.22em] uppercase text-black font-bold">
               For coaches &amp; course creators
             </span>
-            <span className="hidden md:inline-block w-1 h-1 rounded-full bg-luxe-cream/30"></span>
-            <span className="font-sans text-[15.5px] text-white font-semibold md:font-light">
+            <span className="hidden md:inline-block w-1.5 h-1.5 rounded-full bg-black/30"></span>
+            <span className="font-sans text-[15.5px] text-white font-semibold">
               You’ve got the audience and the authority — now make the offer prove it.
             </span>
           </div>
