@@ -351,40 +351,40 @@ export default function LandingView({ onStart }: LandingViewProps) {
         </header>
 
         {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (IMAGE LEFT, TEXT RIGHT) WITH HERO BACKGROUND ===== */}
-        <section className="relative w-screen left-1/2 ml-[-50vw] bg-white lg:bg-[#140F0C] border-b border-black/10 lg:border-luxe-cream/10 py-12 lg:py-20 overflow-hidden z-20 transition-colors duration-300">
+        <section className="relative w-screen left-1/2 ml-[-50vw] bg-white lg:bg-[#140F0C] border-b border-black/10 lg:border-luxe-cream/10 py-0 lg:py-20 overflow-hidden z-20 transition-colors duration-300">
           {/* Ambient Glows from the original hero background (Desktop only) */}
           <div className="absolute inset-0 pointer-events-none z-0 hidden lg:block">
             <div className="absolute top-[-320px] right-[-140px] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(236,95,180,0.15),transparent_62%)] filter blur-[20px]"></div>
             <div className="absolute top-[520px] left-[-260px] w-[760px] h-[760px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(58,50,42,0.40),transparent_60%)] filter blur-[30px]"></div>
           </div>
 
-          <div className="relative z-10 max-w-[1140px] mx-auto px-6 md:px-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="relative z-10 w-full max-w-[1140px] mx-auto lg:px-6 md:px-10">
+            {/* On mobile: Use a 12-column grid to keep them side-by-side, on desktop it uses the standard responsive grid */}
+            <div className="grid grid-cols-12 lg:gap-14 items-center bg-white lg:bg-transparent">
               
-              {/* Left Column: Image of the one (Allie landscape) */}
-              <div className="lg:col-span-6 w-full">
-                {/* On mobile: stretched full screen width, white background container, image scaled to 90% and pushed to the left */}
-                <div className="relative w-screen left-1/2 ml-[-50vw] lg:w-full lg:left-0 lg:ml-0 aspect-[16/10] sm:aspect-[16/9] lg:rounded-2xl overflow-hidden border-y lg:border border-black/5 lg:border-white/[0.08] shadow-none lg:shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-white lg:bg-black/40">
+              {/* Left Column: Image of the woman (pushed to the left, full height) */}
+              <div className="col-span-5 lg:col-span-6 w-full h-full min-h-[220px] sm:min-h-[300px] lg:min-h-0">
+                <div className="relative w-full h-full lg:aspect-[16/10] lg:rounded-2xl overflow-hidden border-r border-black/5 lg:border lg:border-white/[0.08] bg-white lg:bg-black/40">
                   <img 
                     src="/hero-allie.png" 
                     alt="Allie Pasag Hero Landscape" 
-                    className="w-[90%] lg:w-full h-full object-cover mr-auto block"
+                    className="absolute inset-0 w-full h-full object-cover object-left block"
                   />
                 </div>
               </div>
 
-              {/* Right Column: Diagnostic Text */}
-              <div className="lg:col-span-6 text-left flex flex-col justify-center space-y-4">
-                <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-4 py-1.5 w-fit bg-[#EC5FB4]/5">
+              {/* Right Column: Diagnostic Text on the white space */}
+              <div className="col-span-7 lg:col-span-6 text-left flex flex-col justify-center space-y-2 lg:space-y-4 pl-3 pr-4 py-4 lg:py-0">
+                <div className="inline-block font-sans text-[8px] lg:text-[10px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-2 lg:px-4 py-0.5 lg:py-1.5 w-fit bg-[#EC5FB4]/5">
                   Your Diagnosis Preview
                 </div>
                 {/* High contrast dark ink on mobile white background, white on desktop */}
-                <h3 className="font-serif font-medium text-2xl sm:text-3xl lg:text-[32px] leading-[1.22] text-dark-ink lg:text-white transition-colors duration-300">
+                <h3 className="font-serif font-medium text-xs sm:text-base md:text-xl lg:text-[32px] leading-[1.22] text-dark-ink lg:text-white transition-colors duration-300">
                   Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
                 </h3>
-                <div className="h-[1px] bg-black/10 lg:bg-white/10 my-4 w-full"></div>
+                <div className="h-[1px] bg-black/10 lg:bg-white/10 my-1 lg:my-4 w-full"></div>
                 {/* High contrast ash on mobile white background, light champagne on desktop */}
-                <p className="font-sans text-sm sm:text-base leading-relaxed text-ash lg:text-[#C6BAAC] font-light transition-colors duration-300">
+                <p className="font-sans text-[10px] sm:text-sm lg:text-base leading-relaxed text-ash lg:text-[#C6BAAC] font-light transition-colors duration-300">
                   Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
                 </p>
               </div>
