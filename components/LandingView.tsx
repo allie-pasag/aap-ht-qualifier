@@ -435,10 +435,10 @@ export default function LandingView({ onStart }: LandingViewProps) {
             <div className="how-col pr-0 md:pr-[34px] py-4 md:py-0">
               <div className="font-serif italic text-[40px] text-rose-glow leading-none">01</div>
               <div className="font-sans font-semibold text-lg md:text-xl text-luxe-white mt-4">
-                Answer 8 quick questions
+                Complete a quick diagnostic
               </div>
               <p className="font-sans text-sm md:text-[14.5px] leading-relaxed text-taupe font-light mt-2">
-                An honest, 3-minute diagnostic about your offer, your audience, and your systems. No fluff, no complicated fields.
+                An honest, 3-minute check of your offer, your audience, and your systems. No fluff, no complicated forms.
               </p>
             </div>
 
@@ -448,7 +448,7 @@ export default function LandingView({ onStart }: LandingViewProps) {
                 Get scored instantly
               </div>
               <p className="font-sans text-sm md:text-[14.5px] leading-relaxed text-taupe font-light mt-2">
-                Our algorithm matches you with 1 of the 5 Client Types, scores your conversion readiness, and anchors your high-ticket pricing potential.
+                Our system analyzes your answers to score your high-ticket readiness and map your pricing potential.
               </p>
             </div>
 
