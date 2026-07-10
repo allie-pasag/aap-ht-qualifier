@@ -303,76 +303,92 @@ export default function LandingView({ onStart }: LandingViewProps) {
       <div className="relative z-20 max-w-[1140px] mx-auto px-6 md:px-10">
 
         {/* ===== TOP BANNER ===== */}
-        <div className="relative w-screen left-1/2 ml-[-50vw] bg-black border-b border-luxe-cream/10">
+        <div className="relative w-screen left-1/2 ml-[-50vw] bg-[#EC5FB4] md:bg-black border-b border-white/10 md:border-luxe-cream/10 transition-colors duration-300">
           <div className="max-w-[1140px] mx-auto px-6 md:px-10 py-[18px] flex flex-wrap items-center justify-center gap-4 text-center">
-            <span className="font-sans text-[13px] tracking-[0.22em] uppercase text-rose-glow font-bold">
+            <span className="font-sans text-[13px] tracking-[0.22em] uppercase text-black md:text-[#EC5FB4] font-bold">
               For coaches &amp; course creators
             </span>
-            <span className="desktop-only-block w-1 h-1 rounded-full bg-luxe-cream/30"></span>
-            <span className="font-sans text-[15.5px] text-white font-light">
+            <span className="hidden md:inline-block w-1 h-1 rounded-full bg-luxe-cream/30"></span>
+            <span className="font-sans text-[15.5px] text-black md:text-white font-semibold md:font-light">
               You’ve got the audience and the authority — now make the offer prove it.
             </span>
           </div>
         </div>
 
-        {/* ===== HERO SECTION ===== */}
-        <header className="hero relative w-screen left-1/2 ml-[-50vw] min-h-[calc(100svh-60px)] flex items-center justify-center">
-          <div className="hero-wrap relative w-full overflow-hidden bg-[#140F0C]">
-            <img 
-              className="hero-img block w-full h-auto object-cover" 
-              src="/hero-allie.png" 
-              alt="Allie Pasag Hero Landscape" 
-            />
+        {/* ===== HERO SECTION (Minimalist Black Canvas & Headline in Black background container) ===== */}
+        <header className="hero relative w-screen left-1/2 ml-[-50vw] bg-black py-16 sm:py-24 md:py-32 flex items-center justify-center border-b border-white/5">
+          <div className="max-w-[1140px] mx-auto px-6 md:px-10 w-full flex flex-col items-center justify-center text-center space-y-6">
+            
+            <span className="font-serif tracking-[0.25em] uppercase text-xs sm:text-sm text-[#8A7F73] font-semibold block">
+              Allie Pasag Hero Landscape
+            </span>
 
-            {/* LEFT: Absolute Floating Copy */}
-            <div className="hero-copy absolute top-1/2 -translate-y-1/2 left-[4.6%] w-[34%] max-w-[560px] z-30">
-              <div className="hero-lead">
-                Still guessing which niche, funnel, or price will finally click?
-              </div>
-              <h1 className="hero-h1">
-                Find out exactly where you <span className="font-serif italic font-normal text-rose-glow">are</span> — and what to fix first.
+            <div className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl text-[#EC5FB4] font-medium tracking-wide leading-relaxed max-w-2xl">
+              Still guessing which niche, funnel, or price will finally click?
+            </div>
+
+            {/* Headline wrapped in black background highlight */}
+            <div className="bg-black px-4 py-2 rounded-lg">
+              <h1 className="font-serif font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] tracking-tight max-w-3xl mx-auto">
+                Find out exactly where you <span className="font-serif italic font-normal text-[#EC5FB4]">are</span> — and what to fix first.
               </h1>
-              <p className="hero-sub">
-                Answer 6 questions. Get a personalized high-ticket readiness report — instantly.
-              </p>
-              <div style={{ marginTop: 'clamp(14px, 2vw, 28px)' }}>
-                <button
-                  onClick={onStart}
-                  className="hero-cta inline-block text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-rose-glow to-[#A82B67] rounded-full tracking-wide shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer"
-                >
-                  Start the assessment &rarr;
-                </button>
-              </div>
             </div>
 
-            {/* RIGHT: Absolute Floating Result Card */}
-            <div className="hero-result absolute top-[22%] left-[85.5%] -translate-x-1/2 w-[22%] max-w-[300px] z-30">
-              <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-rose-glow font-bold border border-rose-glow/40 rounded-full px-3.5 py-1.5 mb-4">
-                Your result
-              </div>
-              <p className="font-serif font-medium text-lg lg:text-xl xl:text-2xl leading-[1.22] text-dark-ink">
-                Good news, Sam — you have a <span className="font-serif italic text-rose-glow">great offer.</span> Bad news — <span className="font-serif italic text-rose-glow">nobody can tell</span> yet what it is.
-              </p>
-              <div className="h-[1px] bg-dark-ink/14 my-4"></div>
-              <p className="font-sans text-xs lg:text-sm leading-relaxed text-ash font-medium tracking-wide">
-                Clear beats clever. Every time.
-              </p>
-            </div>
-          </div>
+            <p className="font-sans text-sm sm:text-base md:text-lg text-[#C6BAAC] font-light leading-relaxed max-w-2xl mx-auto">
+              Answer 6 questions. Get a personalized high-ticket readiness report — instantly.
+            </p>
 
-          {/* MOBILE VIEW STACKED RESULT CARD */}
-          <div className="hero-result-m w-full bg-white/90 backdrop-blur-md px-6 md:px-10 py-6 md:py-8 border-b border-black/5">
-            <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-rose-glow font-bold border border-rose-glow/40 rounded-full px-3 py-1 mb-3">
-              Your result
+            <div className="pt-6">
+              <button
+                onClick={onStart}
+                className="hero-cta inline-block text-[#1A140F] bg-gradient-to-br from-[#FF92D5] via-[#EC5FB4] to-[#A82B67] rounded-full tracking-wide shadow-[0_14px_44px_rgba(236,95,180,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98] cursor-pointer text-sm sm:text-base font-semibold px-8 py-4"
+              >
+                Start the assessment &rarr;
+              </button>
             </div>
-            <p className="font-serif font-medium text-lg md:text-xl leading-[1.24] text-dark-ink">
-              Good news, Sam — you have a <span className="font-serif italic text-rose-glow">great offer.</span> Bad news — <span className="font-serif italic text-rose-glow">nobody can tell</span> yet what it is.
-            </p>
-            <p className="font-sans text-xs md:text-sm leading-relaxed text-ash font-normal tracking-wide mt-3">
-              Clear beats clever. Every time.
-            </p>
+
           </div>
         </header>
+
+        {/* ===== NEW SECTION: DIAGNOSTIC SAMPLE (IMAGE LEFT, TEXT RIGHT) WITH HERO BACKGROUND ===== */}
+        <section className="relative w-screen left-1/2 ml-[-50vw] bg-[#140F0C] border-b border-luxe-cream/10 py-20 overflow-hidden z-20">
+          {/* Ambient Glows from the original hero background */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute top-[-320px] right-[-140px] w-[900px] h-[900px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(236,95,180,0.15),transparent_62%)] filter blur-[20px]"></div>
+            <div className="absolute top-[520px] left-[-260px] w-[760px] h-[760px] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(58,50,42,0.40),transparent_60%)] filter blur-[30px]"></div>
+          </div>
+
+          <div className="relative z-10 max-w-[1140px] mx-auto px-6 md:px-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              
+              {/* Left Column: Image of the one (Allie landscape) */}
+              <div className="lg:col-span-6 w-full">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-black/40">
+                  <img 
+                    src="/hero-allie.png" 
+                    alt="Allie Pasag Hero Landscape" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column: Diagnostic Text */}
+              <div className="lg:col-span-6 text-left flex flex-col justify-center space-y-4">
+                <div className="inline-block font-sans text-[10px] tracking-[0.24em] uppercase text-[#EC5FB4] font-bold border border-[#EC5FB4]/30 rounded-full px-4 py-1.5 w-fit bg-[#EC5FB4]/5">
+                  Your Diagnosis Preview
+                </div>
+                <h3 className="font-serif font-medium text-2xl sm:text-3xl lg:text-[32px] leading-[1.22] text-white">
+                  Good news, Sam — you have a <span className="font-serif italic text-[#EC5FB4]">great offer.</span> Bad news — <span className="font-serif italic text-[#EC5FB4]">nobody can tell</span> yet what it is.
+                </h3>
+                <div className="h-[1px] bg-white/10 my-4 w-full"></div>
+                <p className="font-sans text-sm sm:text-base leading-relaxed text-[#C6BAAC] font-light">
+                  Clear beats clever. Every time. Most founders build complex funnels and niche down endlessly, but if people can't grasp your high-ticket offer in one simple sentence, none of it clicks.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
 
         {/* ===== SECTION 2: HOW IT WORKS ===== */}
         <section className="py-[100px] border-b border-luxe-cream/10 text-center relative z-20">
